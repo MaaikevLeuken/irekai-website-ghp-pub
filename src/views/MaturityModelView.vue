@@ -194,6 +194,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { showCopiedToast } from '@/composables/useMailtoToast.js'
 
 const tiers = [
   { n:1, name:'Initial',   sub:'Awareness & first steps',    risk:'critical', state:'t-done' },
@@ -240,16 +241,7 @@ function openForm() { formOpen.value = true; formDone.value = false }
 function closeForm() { formOpen.value = false }
 
 function submitForm() {
-  // Notify IREKAI via pre-filled email (fires silently in background)
-  const subject = encodeURIComponent(`Maturity Model Download — ${form.company}`)
-  const body = encodeURIComponent(
-    `New maturity model download:\n\nName: ${form.name}\nJob title: ${form.title}\nCompany: ${form.company}\nEmail: ${form.email}`
-  )
-  const mailto = `mailto:info@irekai.nl?subject=${subject}&body=${body}`
-  const a = document.createElement('a')
-  a.href = mailto
-  a.click()
-
+  navigator.clipboard.writeText('info@irekai.nl').then(() => showCopiedToast('info@irekai.nl'))
   formDone.value = true
 }
 </script>

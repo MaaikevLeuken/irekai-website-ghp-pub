@@ -17,12 +17,12 @@
             </div>
             <h1 class="hero-h1 font-display">
               Know your quantum<br/>
-              <em style="color:#2dd4bf">exposure. Now.</em>
+              <em style="color:#2dd4bf">readiness. Now.</em>
             </h1>
             <p class="hero-lead">
               IREKAI's Quantum Readiness Assessment gives organisations a clear, actionable
-              picture of their cryptographic posture — in 4–6 weeks, not months. Our specialists
-              do the heavy lifting: you get sharp insight and a prioritised roadmap.
+              picture of their cryptographic posture — in 4–6 weeks, not months. The collaborative approach ensures your team is well-equiped to tackle the quantum transition head-on, 
+              with a clear roadmap and frameworks and tools to effectively get started.
             </p>
             <div class="hero-actions">
               <a href="mailto:info@irekai.nl?subject=Quantum Readiness Assessment" class="btn btn-teal" style="font-size:0.8rem;padding:0.75rem 1.6rem;">
@@ -124,8 +124,8 @@
             <em style="color:#2dd4bf">Tell us about your situation.</em>
           </h3>
           <p class="intake-lead">
-            Answer five quick questions and get a rough readiness profile. We'll use your answers
-            to tailor our approach — and reach back with a concrete proposal that fits your organisation.
+            Answer five quick questions to get a rough readiness profile. We'll use your answers
+            to tailor our approach — and reach out to you with a concrete proposal that fits your organisation.
           </p>
           <button class="btn btn-teal intake-start-btn" @click="step = 1">
             Get my quick profile →
@@ -294,6 +294,17 @@
               </a>
             </div>
 
+            <div class="copy-row">
+              <button class="btn btn-copy font-mono" @click="copyProfile">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px;flex-shrink:0">
+                  <rect x="5" y="5" width="9" height="9" rx="1.5"/>
+                  <path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"/>
+                </svg>
+                <span>{{ copied ? 'Copied!' : 'Copy profile to clipboard' }}</span>
+              </button>
+              <span class="copy-hint">No mail app? Paste into any email to <span class="copy-email">info@irekai.nl</span></span>
+            </div>
+
             <button class="intake-restart font-mono" @click="restart">
               ← Start over
             </button>
@@ -317,25 +328,25 @@ const dialItems = [
 ]
 
 const deliverables = [
-  { title: 'Readiness score',           body: 'A single composite score across five cryptographic dimensions — easy to communicate to leadership.' },
-  { title: 'Dimension-level breakdown', body: 'Detailed scores for crypto agility, inventory, PQC availability, governance, and supplier management.' },
-  { title: 'Risk heat map',             body: 'Visual mapping of your highest-priority vulnerabilities by business impact and urgency.' },
-  { title: 'Prioritised action plan',   body: 'A concrete, ordered list of actions with effort estimates and expected risk reduction.' },
-  { title: 'Migration roadmap',         body: 'A phased 12–36 month migration roadmap tailored to your organisation\'s size and risk appetite.' },
+  { title: 'Common understanding',      body: 'A company-wide shared understanding of the quantum threat to cryptography.' },
+  { title: 'Readiness score',           body: 'A single composite score across five cryptographic dimensions — easy to communicate to higher management. Underpinned by detailed scores for crypto agility, inventory, PQC availability, governance, and supplier management.' },
+  { title: 'Critical business cases',   body: 'Identification and prioritisation of key business cases relying on quantum-vulnerable cryptography.' },
+  { title: 'Risk heat map',             body: 'A high-level risk assessment, indicating your highest-priority vulnerabilities by business impact and urgency.' },
+  { title: 'Migration roadmap',         body: 'A short and medium-term migration roadmap tailored to your organisation, outlining concrete actions.' },
 ]
 
 const steps = [
-  { title: 'Intake questionnaire',  body: 'A structured set of questions covering your current cryptographic landscape, completed asynchronously.' },
-  { title: 'Expert review session', body: 'A 2-hour session with an IREKAI specialist to clarify responses and probe technical depth.' },
-  { title: 'Analysis & scoring',    body: 'We score your responses against our maturity model, calibrated to your industry and regulatory context.' },
-  { title: 'Results readout',       body: 'A 1-hour readout where we walk through findings, answer questions, and agree on next steps.' },
-  { title: 'Report delivery',       body: 'Full written report with all findings, scores, and the prioritised roadmap delivered within 5 business days.' },
+  { title: 'Intake questionnaire',  body: 'A structured set of questions covering your current cryptographic landscape, completed offline.' },
+  { title: 'Expert workshops',      body: 'Three collaborative sessions with an IREKAI specialist to dive deep into your specific challenges and create a common knowledge base.' },
+  { title: 'Offline assignments',   body: 'To enable your organisation to continue the work after the workshops. Consists of assigning responsibilities and gathering additional information.' },
+  { title: 'Iterative feedback',    body: 'Feedback on intermediate results to ensure alignment with your organisation\'s needs.' },
+  { title: 'Sharing of deliverables',body: 'The deliverables include a comprehensive report with all findings, scores, and the prioritised roadmap. ' },
 ]
 
 const areas = [
-  { code:'01', name:'Crypto Agility',      color:'#e879f9', desc:'Can you swap algorithms without rewriting systems? We assess abstraction, CI/CD policies, and key rotation capabilities.' },
-  { code:'02', name:'Asset Inventory',     color:'#22d3ee', desc:'Do you know what cryptographic assets you have? We evaluate discovery tooling, CBOM practices, and coverage.' },
-  { code:'03', name:'PQC Availability',    color:'#34d399', desc:'Are post-quantum algorithms deployed anywhere? We assess library readiness, sandbox testing, and production status.' },
+  { code:'01', name:'Crypto Agility',      color:'#e879f9', desc:'Can you swap algorithms without rewriting complete systems? We assess code abstractions, CI/CD policies, TLS configurations, and key rotation capabilities.' },
+  { code:'02', name:'Asset Inventory',     color:'#22d3ee', desc:'Do you know what cryptographic assets you have? We evaluate (manual/automated) discovery, CBOM practices, and coverage.' },
+  { code:'03', name:'PQC Availability',    color:'#34d399', desc:'Are post-quantum algorithms available for tests and deployment? We assess library readiness, testing set-up, and production status.' },
   { code:'04', name:'Governance',          color:'#fbbf24', desc:'Is quantum risk owned and funded? We evaluate executive sponsorship, policy, roadmaps, and compliance alignment.' },
   { code:'05', name:'Supplier Management', color:'#a78bfa', desc:'Are your vendors quantum-ready? We assess supply chain visibility, contract requirements, and SBOM/CBOM coverage.' },
 ]
@@ -429,6 +440,26 @@ const mailtoLink = computed(() => {
   )
   return `mailto:info@irekai.nl?subject=${subject}&body=${body}`
 })
+
+const copied = ref(false)
+
+function copyProfile() {
+  const text =
+    `Quantum Readiness Profile\n` +
+    `──────────────────────────\n` +
+    `Sector:  ${profile.sector}\n` +
+    `Size:    ${profile.size}\n` +
+    `Driver:  ${profile.driver}\n\n` +
+    `Dimension self-ratings (1 = not started, 5 = well advanced)\n` +
+    Object.entries(ratings).map(([k, v]) => `  ${k}: ${v}/5`).join('\n') + '\n\n' +
+    `Maturity tier: ${tier.value.label} (avg ${avgScore.value.toFixed(1)} / 5)\n\n` +
+    `Hi IREKAI team,\n\nI completed the quick readiness profile on your website (results above).\nI'd like to discuss a full Quantum Readiness Assessment.\n\nKind regards`
+
+  navigator.clipboard.writeText(text).then(() => {
+    copied.value = true
+    setTimeout(() => { copied.value = false }, 2500)
+  })
+}
 
 function restart() {
   step.value = 0
@@ -611,6 +642,40 @@ function restart() {
 
 .results-cta-text { font-size: 0.78rem; line-height: 1.7; color: var(--text-dim); margin-bottom: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.25rem; }
 .results-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
+
+.copy-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+}
+
+.btn-copy {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.68rem; letter-spacing: 0.04em;
+  padding: 0.4rem 0.85rem; border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--text-muted);
+  cursor: pointer; transition: all 0.15s; white-space: nowrap;
+}
+.btn-copy:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+.copy-hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+.copy-email {
+  color: var(--text-muted);
+  font-style: normal;
+  user-select: all;
+}
 
 .intake-restart {
   background: none; border: none; cursor: pointer;

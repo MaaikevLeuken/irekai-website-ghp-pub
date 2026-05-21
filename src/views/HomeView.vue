@@ -78,7 +78,7 @@
             </div>
           </div>
           <p class="hero-tagline" ref="taglineEl">
-            Cryptographic clarity first. Migrate with peace of mind.
+            Cryptographic clarity. Migrate with peace of mind.
           </p>
         </div>
 
@@ -506,7 +506,7 @@ const whyItems = [
 
 .section-head { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
 .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 500; line-height: 1.15; color: var(--text); }
-.section-sub { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); max-width: 56ch; }
+.section-sub { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
 
 .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
 @media (min-width: 640px)  { .products-grid { grid-template-columns: 1fr 1fr; } }

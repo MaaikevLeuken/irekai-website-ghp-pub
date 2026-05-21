@@ -12,7 +12,7 @@
             <div class="section-label" style="margin-bottom:1rem;">About IREKAI</div>
             <h1 class="font-display" style="font-size:clamp(2rem,5vw,3.2rem);font-weight:500;line-height:1.15;color:var(--text);margin-bottom:1.25rem;">
               Helping organisations<br/>
-              <em style="color:#7aad97">navigate the quantum transition.</em>
+              <em style="color:#7aad97">navigate the quantum-safe cryptography transition.</em>
             </h1>
             <div class="prose" style="color:var(--text-muted);">
               <p>
@@ -23,7 +23,10 @@
               <p>
                 Quantum computing is not a distant threat. The harvest-now-decrypt-later (HNDL) attack
                 vector means your encrypted data is at risk today, even if cryptographically-relevant
-                quantum computers are still years away. In addition, a full migration is estimated to take 5–10 years. IREKAI helps you act now, pragmatically.
+                quantum computers are still years away. In this attack, an attacker stores your encrypted data and decrypts it once a quantum computer become available. 
+                In addition, a full migration is estimated to take 5–10 years. Organisation like Cloudflare and Google aim at being completely migration by 2029. 
+                European legislation requires critical infrastructure operators to be quantum-ready by 2035.
+                IREKAI helps you act now.
               </p>
               <p>
                 We combine deep cryptographic expertise with practical engineering. Our
@@ -89,7 +92,7 @@
                 </svg>
               </div>
               <div class="etym-name">IREKAI</div>
-              <div class="etym-tagline">Clarity first. Migrate with confidence.</div>
+              <div class="etym-tagline">Cryptographic clarity. Migrate with peace of mind.</div>
             </div>
           </div>
         </div>
@@ -137,9 +140,6 @@
             <a href="mailto:info@irekai.nl" class="btn btn-sage" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
               info@irekai.nl →
             </a>
-            <a href="https://irekai.nl" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
-              irekai.nl ↗
-            </a>
           </div>
         </div>
       </div>
@@ -155,14 +155,14 @@ const mission = [
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`
   },
   {
-    title: 'Compliancy-first',
-    body: 'Every IREKAI engagement produces tangible compliance evidence. Demonstrate your quantum-readiness posture to auditors, regulators, and clients — aligned with NIS2, DORA, ISO 27001, and CNSA 2.0.',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`
-  },
-  {
     title: 'Practical focus',
     body: 'We don\'t produce shelf reports. Every IREKAI engagement ends with tools, templates, and a concrete plan your team can execute — without a permanent consulting retainer.',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`
+  },
+  {
+    title: 'Compliancy aid',
+    body: 'Demonstrate your quantum-readiness posture to auditors, regulators, and clients — aligned with NIS2, DORA, ISO 27001, and CNSA 2.0.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`
   },
 ]
 
