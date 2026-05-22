@@ -10,14 +10,16 @@ const MaturityModelView    = () => import('@/views/MaturityModelView.vue')
 const SupplierMgmtView     = () => import('@/views/SupplierManagementView.vue')
 const QuantumReadinessView = () => import('@/views/QuantumReadinessView.vue')
 const CodeScanningView     = () => import('@/views/CodeScanningView.vue')
+const CryptoAgilityView    = () => import('@/views/CryptoAgilityView.vue')
 
 const routes = [
   { path: '/',                      component: HomeView,             meta: { title: 'IREKAI' } },
   { path: '/about',                 component: AboutView,            meta: { title: 'About — IREKAI' } },
   { path: '/products/maturity-model',       component: MaturityModelView,    meta: { title: 'PQC Maturity Model — IREKAI' } },
   { path: '/products/supplier-management',  component: SupplierMgmtView,     meta: { title: 'Supplier Management — IREKAI' } },
-  { path: '/products/quantum-readiness',    component: QuantumReadinessView, meta: { title: 'Quantum Readiness Assessment — IREKAI' } },
-  { path: '/products/code-scanning',        component: CodeScanningView,     meta: { title: 'Cryptographic Code Scanner — IREKAI' } },
+  { path: '/products/quantum-readiness',    component: QuantumReadinessView, meta: { title: 'Quick Quantum Readiness Assessment — IREKAI' } },
+  { path: '/products/code-scanning',        component: CodeScanningView,     meta: { title: 'CryptoScope — IREKAI' } },
+  { path: '/products/crypto-agility',       component: CryptoAgilityView,    meta: { title: 'Crypto Agility Best Practices — IREKAI' } },
 ]
 
 const router = createRouter({

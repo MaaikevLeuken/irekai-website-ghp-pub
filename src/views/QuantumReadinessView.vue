@@ -13,19 +13,19 @@
         <div class="hero-body">
           <div class="hero-text">
             <div class="section-label" style="margin-bottom:1rem;color:#2dd4bf;opacity:0.8;">
-              01 · Quantum Readiness Assessment
+              01 · Quick Quantum Readiness Assessment
             </div>
             <h1 class="hero-h1 font-display">
               Know your quantum<br/>
               <em style="color:#2dd4bf">readiness. Now.</em>
             </h1>
             <p class="hero-lead">
-              IREKAI's Quantum Readiness Assessment gives organisations a clear, actionable
+              IREKAI's Quick Quantum Readiness Assessment gives organisations a clear, actionable
               picture of their cryptographic posture — in 4–6 weeks, not months. The collaborative approach ensures your team is well-equiped to tackle the quantum transition head-on, 
               with a clear roadmap and frameworks and tools to effectively get started.
             </p>
             <div class="hero-actions">
-              <a href="mailto:info@irekai.nl?subject=Quantum Readiness Assessment" class="btn btn-teal" style="font-size:0.8rem;padding:0.75rem 1.6rem;">
+              <a href="mailto:info@irekai.nl?subject=Quick Quantum Readiness Assessment" class="btn btn-teal" style="font-size:0.8rem;padding:0.75rem 1.6rem;">
                 Request your assessment →
               </a>
             </div>
@@ -436,7 +436,7 @@ const mailtoLink = computed(() => {
     `Dimension self-ratings (1 = not started, 5 = well advanced)\n` +
     Object.entries(ratings).map(([k, v]) => `  ${k}: ${v}/5`).join('\n') + '\n\n' +
     `Estimated maturity tier: ${tier.value.label} (avg ${avgScore.value.toFixed(1)}/5)\n\n` +
-    `I'd like to discuss a full Quantum Readiness Assessment. Please get in touch.\n\nKind regards`
+    `I'd like to discuss a full Quick Quantum Readiness Assessment. Please get in touch.\n\nKind regards`
   )
   return `mailto:info@irekai.nl?subject=${subject}&body=${body}`
 })
@@ -453,7 +453,7 @@ function copyProfile() {
     `Dimension self-ratings (1 = not started, 5 = well advanced)\n` +
     Object.entries(ratings).map(([k, v]) => `  ${k}: ${v}/5`).join('\n') + '\n\n' +
     `Maturity tier: ${tier.value.label} (avg ${avgScore.value.toFixed(1)} / 5)\n\n` +
-    `Hi IREKAI team,\n\nI completed the quick readiness profile on your website (results above).\nI'd like to discuss a full Quantum Readiness Assessment.\n\nKind regards`
+    `Hi IREKAI team,\n\nI completed the quick readiness profile on your website (results above).\nI'd like to discuss a full Quick Quantum Readiness Assessment.\n\nKind regards`
 
   navigator.clipboard.writeText(text).then(() => {
     copied.value = true

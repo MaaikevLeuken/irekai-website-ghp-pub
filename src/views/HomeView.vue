@@ -104,6 +104,7 @@
         <div class="products-grid">
           <RouterLink to="/products/quantum-readiness" class="product-card product-card--featured sage">
             <div class="card-badge sage-badge">Featured · Flagship product</div>
+            <div class="card-badge available-badge">Available</div>
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -124,6 +125,7 @@
           </RouterLink>
 
           <RouterLink to="/products/maturity-model" class="product-card amber">
+            <div class="card-badge available-badge">Available</div>
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M2 20h20M6 20V10M12 20V4M18 20v-8"/>
@@ -143,6 +145,7 @@
           </RouterLink>
 
           <RouterLink to="/products/supplier-management" class="product-card violet">
+            <div class="card-badge available-badge">Available</div>
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -152,8 +155,8 @@
             </div>
             <h3 class="card-title">Supplier Management Programme</h3>
             <p class="card-desc">
-              Quantum threats are pushed up the supply chain. Systematically assess vendors,
-              embed PQC requirements in contracts, and verify your entire supply chain.
+              Quantum threats are pushed up the supply chain. Systematically assess vendors and
+              embed PQC and CBOM requirements in contracts
             </p>
             <div class="card-tags">
               <span class="tag">Supply chain</span>
@@ -164,19 +167,21 @@
           </RouterLink>
 
           <RouterLink to="/products/code-scanning" class="product-card fuchsia">
+            <div class="card-badge coming-soon-badge">Coming soon</div>
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <polyline points="16 18 22 12 16 6"/>
                 <polyline points="8 6 2 12 8 18"/>
               </svg>
             </div>
-            <h3 class="card-title">Cryptographic Code Scanner</h3>
+            <h3 class="card-title">CryptoScope</h3>
             <p class="card-desc">
-              Automated static analysis of your codebase. Detect vulnerable keys and algorithms,
-              assess cryptographic agility, and gain insight in every quantum-vulnerable dependency.
+              Scope your crypto risk from business case to code. Find every relevant crypto
+              library and usage pattern in the systems that matter, and assess adherence to
+              crypto agility best practices — with evidence tied to exact file locations.
             </p>
             <div class="card-tags">
-              <span class="tag">SAST</span>
+              <span class="tag">Top-down scoping</span>
               <span class="tag">Crypto agility</span>
               <span class="tag">CBOM</span>
             </div>
@@ -541,6 +546,8 @@ const whyItems = [
 
 .card-badge { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 4px; display: inline-flex; align-self: flex-start; }
 .sage-badge { background: rgba(122,173,151,0.1); color: #7aad97; border: 1px solid rgba(122,173,151,0.3); }
+.available-badge { background: rgba(74,222,128,0.08); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+.coming-soon-badge { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid rgba(167,139,250,0.35); }
 
 .card-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--accent, var(--text-muted)); flex-shrink: 0; }
 .card-icon svg { width: 20px; height: 20px; }

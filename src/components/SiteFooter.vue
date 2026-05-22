@@ -22,22 +22,22 @@
           </svg>
           <span>IREKAI</span>
         </RouterLink>
-        <p class="footer-tagline">Cryptographic resilience<br/>for the quantum age.</p>
+        <p class="footer-tagline">Full-spectrum support for<br/>your cryptographic migration.</p>
       </div>
 
       <nav class="footer-nav">
         <div class="footer-nav-col">
           <div class="footer-nav-label">Products</div>
-          <RouterLink to="/products/quantum-readiness"   class="footer-link">Quantum Readiness Assessment</RouterLink>
+          <RouterLink to="/products/quantum-readiness"   class="footer-link">Quick Quantum Readiness Assessment</RouterLink>
           <RouterLink to="/products/maturity-model"      class="footer-link">PQC Maturity Model</RouterLink>
           <RouterLink to="/products/supplier-management" class="footer-link">Supplier Management</RouterLink>
-          <RouterLink to="/products/code-scanning"       class="footer-link">Code Scanner</RouterLink>
+          <RouterLink to="/products/code-scanning"       class="footer-link">CryptoScope</RouterLink>
+          <RouterLink to="/products/crypto-agility"     class="footer-link">Crypto Agility Best Practices</RouterLink>
         </div>
         <div class="footer-nav-col">
           <div class="footer-nav-label">Company</div>
           <RouterLink to="/about" class="footer-link">About</RouterLink>
           <a href="mailto:info@irekai.nl" class="footer-link">Contact</a>
-          <a href="https://irekai.nl" class="footer-link">irekai.nl</a>
         </div>
       </nav>
     </div>

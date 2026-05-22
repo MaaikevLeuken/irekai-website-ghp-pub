@@ -89,10 +89,11 @@ const isScrolled = ref(false)
 const dropdownRef = ref(null)
 
 const products = [
-  { to: '/products/quantum-readiness',   label: 'Quantum Readiness Assessment',  color: '#7aad97' },
+  { to: '/products/quantum-readiness',   label: 'Quick Quantum Readiness Assessment',  color: '#7aad97' },
   { to: '/products/maturity-model',      label: 'PQC Maturity Model',            color: '#fbbf24' },
   { to: '/products/supplier-management', label: 'Supplier Management Programme',  color: '#a78bfa' },
-  { to: '/products/code-scanning',       label: 'Cryptographic Code Scanner',    color: '#e879f9' },
+  { to: '/products/code-scanning',       label: 'CryptoScope',                   color: '#e879f9' },
+  { to: '/products/crypto-agility',     label: 'Crypto Agility Best Practices', color: '#38bdf8' },
 ]
 
 const isProductsRoute = computed(() => route.path.startsWith('/products'))
