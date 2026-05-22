@@ -923,8 +923,8 @@ function render() {
 
   document.getElementById("app").innerHTML = `
     <header class="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 pb-8">
-      <div class="flex items-center justify-between gap-8 flex-wrap">
-        <div class="max-w-2xl">
+      <div class="flex items-center justify-between gap-8">
+        <div class="flex-1 min-w-0">
           <div class="font-mono text-xs tracking-[0.25em] text-stone-500 mb-3">
             POST&#8209;QUANTUM CRYPTOGRAPHY · MIGRATION TECH TREE · v1
           </div>
@@ -951,7 +951,7 @@ function render() {
             </label>
           </div>
         </div>
-        <div class="flex-1 min-w-[340px] max-w-[460px]">
+        <div class="flex-shrink-0 w-[360px]">
           <div class="rounded-2xl border ${pTheme.border} ${pTheme.bg} ${pTheme.glow} p-6 backdrop-blur-sm progress-card">
             <div class="flex items-center justify-between gap-3 mb-4">
               <div class="font-mono text-[10px] tracking-[0.25em] text-stone-400">OVERALL PROGRESS</div>

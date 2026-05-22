@@ -15,20 +15,20 @@
               03 · Quantum Threat Supplier Management Programme
             </div>
             <h1 class="hero-h1 font-display">
-              Your perimeter ends<br/>
+              Your direct control ends<br/>
               <em style="color:#a78bfa">where your vendors begin.</em>
             </h1>
             <p class="hero-lead">
-              Third-party cryptographic risk is one of the most underestimated exposure surfaces in
-              the quantum transition. IREKAI's Supplier Management Programme gives you structured
+              Third-party cryptographic risk is an underestimated exposure surface in
+              cryptographic transitions. IREKAI's Supplier Management Programme gives you structured
               tools, templates, and processes to extend quantum-readiness across your entire supply chain.
             </p>
             <div class="hero-actions">
-              <a href="mailto:info@irekai.nl?subject=Supplier Management Programme" class="btn" style="background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.4);color:#a78bfa;font-size:0.8rem;padding:0.75rem 1.6rem;">
-                Request programme →
-              </a>
-              <a href="mailto:info@irekai.nl" class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
-                Learn more
+              <button @click="openPreview" class="btn violet-btn">
+                Preview overview →
+              </button>
+              <a href="mailto:info@irekai.nl?subject=Request%3A%20Quantum%20Threat%20Supplier%20Management%20Programme" class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
+                Request full programme →
               </a>
             </div>
           </div>
@@ -101,28 +101,128 @@
       </div>
     </section>
 
-    <!-- Teaser download -->
-    <section class="teaser-download">
+    <!-- CTA split -->
+    <section class="cta-split-section">
       <div class="container">
-        <div class="dl-card">
-          <div class="badge violet-badge" style="margin-bottom:0.75rem;">Preview available</div>
-          <h3 class="font-display" style="font-size:1.3rem;margin-bottom:0.6rem;">
-            Programme overview — teaser
-          </h3>
-          <p class="prose" style="margin-bottom:1.5rem;">
-            Read a high-level overview of the Quantum Threat Supplier Management Programme,
-            including the assessment framework and sample deliverables.
-          </p>
-          <a href="mailto:info@irekai.nl?subject=Supplier Management Teaser" class="btn" style="background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.4);color:#a78bfa;font-size:0.8rem;">
-            Request teaser document →
-          </a>
+        <div class="cta-split-grid">
+
+          <!-- Preview card -->
+          <div class="cta-card cta-card--preview">
+            <div class="badge violet-badge" style="margin-bottom:0.85rem;">Free · Instant access</div>
+            <h3 class="font-display cta-card-title">Programme overview</h3>
+            <p class="cta-card-body">
+              A high-level overview of the Quantum Threat Supplier Management Programme —
+              including the assessment framework, programme phases, and sample deliverables.
+              Free, immediately after you share your details.
+            </p>
+            <button @click="openPreview" class="btn violet-btn" style="margin-top:auto;">
+              Get preview document →
+            </button>
+          </div>
+
+          <!-- Full programme card -->
+          <div class="cta-card cta-card--full">
+            <div class="badge" style="background:rgba(167,139,250,0.06);color:#a78bfa;border-color:rgba(167,139,250,0.2);margin-bottom:0.85rem;">Full engagement</div>
+            <h3 class="font-display cta-card-title">Full programme</h3>
+            <p class="cta-card-body">
+              Ready to run the programme across your supplier base? Get in touch and we'll
+              scope the engagement — discovery, assessment, contracting, and ongoing monitoring
+              — to your organisation's size and risk profile.
+            </p>
+            <a
+              href="mailto:info@irekai.nl?subject=Request%3A%20Quantum%20Threat%20Supplier%20Management%20Programme&body=Hi%20IREKAI%2C%0A%0AI%27d%20like%20to%20discuss%20the%20full%20Quantum%20Threat%20Supplier%20Management%20Programme.%0A%0AOrganisation%3A%20%0AContact%20name%3A%20%0ANumber%20of%20suppliers%20in%20scope%20(approx.)%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you."
+              class="btn btn-ghost"
+              style="font-size:0.8rem;padding:0.75rem 1.5rem;margin-top:auto;"
+            >
+              Request full programme →
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
+
+    <!-- Preview access modal -->
+    <Transition name="modal">
+      <div v-if="previewOpen" class="modal-backdrop" @click.self="closePreview">
+        <div class="modal-card">
+
+          <template v-if="!previewDone">
+            <button class="modal-close" @click="closePreview" aria-label="Close">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="modal-label font-mono">Free access</div>
+            <h3 class="modal-heading font-display">Get the programme overview</h3>
+            <p class="modal-sub">Fill in your details and the preview document is yours immediately.</p>
+
+            <form class="access-form" @submit.prevent="submitPreview">
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label">Name</label>
+                  <input v-model="previewForm.name" type="text" class="form-input" placeholder="Jane Smith" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Job title</label>
+                  <input v-model="previewForm.title" type="text" class="form-input" placeholder="CISO" required />
+                </div>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Company</label>
+                <input v-model="previewForm.company" type="text" class="form-input" placeholder="Acme Corp" required />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Work email</label>
+                <input v-model="previewForm.email" type="email" class="form-input" placeholder="jane@acme.com" required />
+              </div>
+              <button type="submit" class="btn form-submit-btn">
+                Get instant access →
+              </button>
+            </form>
+          </template>
+
+          <template v-else>
+            <div class="modal-success">
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <h3 class="modal-heading font-display">You're in, {{ previewForm.name.split(' ')[0] }}.</h3>
+              <p class="modal-sub">Your preview of the Quantum Threat Supplier Management Programme is ready.</p>
+              <a :href="previewDocUrl" download class="btn form-submit-btn" style="text-align:center;justify-content:center;">
+                ↓ Download preview
+              </a>
+              <p class="modal-note">
+                A copy will also be sent to {{ previewForm.email }} within 24 hours.
+              </p>
+              <button class="modal-close-text font-mono" @click="closePreview">Close</button>
+            </div>
+          </template>
+
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
+import { ref, reactive } from 'vue'
+import { showCopiedToast } from '@/composables/useMailtoToast.js'
+
+// ── Preview modal ─────────────────────────────────────────────────────────────
+const previewDocUrl = '/assets/irekai-supplier-programme-preview.pdf'
+const previewOpen = ref(false)
+const previewDone = ref(false)
+const previewForm = reactive({ name: '', title: '', company: '', email: '' })
+
+function openPreview()  { previewOpen.value = true; previewDone.value = false }
+function closePreview() { previewOpen.value = false }
+function submitPreview() {
+  navigator.clipboard.writeText('info@irekai.nl').then(() => showCopiedToast('info@irekai.nl'))
+  previewDone.value = true
+}
+
 const supplyTiers = [
   { label: 'Tier 1 — Critical software vendors', fill: 92, color: '#f87171', risk: 'Critical' },
   { label: 'Tier 2 — Hardware & HSM suppliers',  fill: 75, color: '#fb923c', risk: 'High' },
@@ -178,12 +278,12 @@ const included = [
 ]
 
 const outcomes = [
-  'Full visibility into third-party cryptographic exposure',
+  'Visibility into third-party cryptographic exposure',
   'PQC requirements embedded in all new and renewed contracts',
-  'Prioritised vendor remediation roadmap',
+  'Prioritised vendor risk remediation roadmap',
   'Continuous SBOM/CBOM-driven monitoring in place',
-  'Audit-ready evidence of supply chain quantum governance',
-  'Escalation process for non-compliant vendors',
+  'Audit-ready evidence of supply chain governance',
+  'Alternatives for non-compliant vendors',
 ]
 </script>
 
@@ -259,14 +359,117 @@ const outcomes = [
 }
 .outcome-check { color: #a78bfa; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.1rem; }
 
-/* Teaser download */
-.teaser-download { padding: 3rem 0 5rem; }
-.dl-card {
-  background: rgba(167,139,250,0.04);
-  border: 1px solid rgba(167,139,250,0.2);
+/* CTA split */
+.cta-split-section { padding: 3rem 0 5rem; border-top: 1px solid var(--border); }
+.cta-split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) { .cta-split-grid { grid-template-columns: 1fr 1fr; } }
+
+.cta-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 2rem;
   border-radius: 14px;
-  padding: 2.5rem;
-  max-width: 600px;
+  border: 1px solid var(--border);
+  background: rgba(28,25,23,0.5);
+}
+.cta-card--preview {
+  border-color: rgba(167,139,250,0.25);
+  background: rgba(167,139,250,0.04);
+}
+.cta-card-title { font-size: 1.2rem; font-weight: 500; color: var(--text); }
+.cta-card-body { font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); flex: 1; }
+
+.violet-btn {
+  background: rgba(167,139,250,0.1);
+  border: 1px solid rgba(167,139,250,0.4);
+  color: #a78bfa;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.violet-btn:hover {
+  background: rgba(167,139,250,0.18);
+  border-color: rgba(167,139,250,0.7);
+  box-shadow: 0 0 18px -5px rgba(167,139,250,0.35);
 }
 .violet-badge { background: rgba(167,139,250,0.1); color: #a78bfa; border-color: rgba(167,139,250,0.3); }
+
+/* ── Preview modal ─────────────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(12,10,9,0.82);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1.5rem;
+}
+.modal-card {
+  background: #1a1714;
+  border: 1px solid rgba(167,139,250,0.25);
+  border-radius: 16px;
+  padding: 2.25rem 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+}
+.modal-close {
+  position: absolute; top: 1.1rem; right: 1.1rem;
+  width: 28px; height: 28px;
+  background: transparent; border: none; cursor: pointer;
+  color: var(--text-dim); transition: color 0.15s;
+  padding: 0; display: flex; align-items: center; justify-content: center;
+}
+.modal-close:hover { color: var(--text); }
+.modal-close svg { width: 16px; height: 16px; }
+.modal-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #a78bfa; opacity: 0.8; margin-bottom: 0.75rem; }
+.modal-heading { font-size: 1.35rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+.modal-sub { font-size: 0.85rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 1.75rem; }
+
+.access-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+.form-input {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 7px; padding: 0.6rem 0.85rem;
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--text);
+  outline: none; transition: border-color 0.15s; width: 100%; box-sizing: border-box;
+}
+.form-input::placeholder { color: var(--text-dim); }
+.form-input:focus { border-color: rgba(167,139,250,0.5); }
+.form-submit-btn {
+  background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.45); color: #a78bfa;
+  font-family: var(--font-mono); font-size: 0.8rem; padding: 0.8rem 1.5rem;
+  border-radius: 7px; cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  text-decoration: none; margin-top: 0.5rem;
+}
+.form-submit-btn:hover { background: rgba(167,139,250,0.2); border-color: rgba(167,139,250,0.7); box-shadow: 0 0 20px -6px rgba(167,139,250,0.4); }
+
+.modal-success { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; padding: 0.5rem 0; }
+.success-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(167,139,250,0.08); border: 1px solid rgba(167,139,250,0.25); display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem; }
+.success-icon svg { width: 24px; height: 24px; }
+.modal-note { font-size: 0.75rem; color: var(--text-dim); line-height: 1.6; max-width: 34ch; }
+.modal-close-text { background: none; border: none; cursor: pointer; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-dim); padding: 0; transition: color 0.15s; margin-top: 0.5rem; }
+.modal-close-text:hover { color: var(--text-muted); }
+
+.modal-enter-active, .modal-leave-active { transition: opacity 0.2s ease; }
+.modal-enter-active .modal-card, .modal-leave-active .modal-card { transition: transform 0.25s cubic-bezier(.2,0,.2,1), opacity 0.2s ease; }
+.modal-enter-from, .modal-leave-to { opacity: 0; }
+.modal-enter-from .modal-card, .modal-leave-to .modal-card { transform: translateY(16px) scale(0.97); opacity: 0; }
 </style>

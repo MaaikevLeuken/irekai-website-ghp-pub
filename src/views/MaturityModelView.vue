@@ -24,11 +24,11 @@
               Each tier builds on the last, with concrete activities and measurable outcomes.
             </p>
             <div class="hero-actions">
-              <button @click="openForm" class="btn" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.4);color:#fbbf24;font-size:0.8rem;padding:0.75rem 1.6rem;cursor:pointer;">
-                Get the framework →
+              <button @click="openForm" class="btn amber-btn">
+                Preview framework →
               </button>
-              <a href="mailto:info@irekai.nl" class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
-                Book a demo
+              <a href="mailto:info@irekai.nl?subject=Request%3A%20IREKAI%20PQC%20Migration%20Maturity%20Model%20%E2%80%94%20Full%20Access&body=Hi%20IREKAI%2C%0A%0AI%27d%20like%20to%20request%20full%20access%20to%20the%20PQC%20Migration%20Maturity%20Model.%0A%0AOrganisation%3A%20%0AContact%20name%3A%20%0AContext%20(optional)%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you." class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
+                Request full access →
               </a>
             </div>
           </div>
@@ -38,12 +38,19 @@
             <div class="font-mono tier-label">Maturity tiers</div>
             <div class="tiers-mini">
               <div class="tier-mini" v-for="t in tiers" :key="t.name" :class="t.state">
-                <div class="tier-num font-mono">{{ String(t.n).padStart(2,'0') }}</div>
-                <div>
-                  <div class="tier-name font-display">{{ t.name }}</div>
-                  <div class="tier-sub">{{ t.sub }}</div>
+                <div class="tier-mini-header">
+                  <div class="tier-num font-mono">{{ String(t.n).padStart(2,'0') }}</div>
+                  <div>
+                    <div class="tier-name font-display">{{ t.name }}</div>
+                    <div class="tier-sub">{{ t.sub }}</div>
+                  </div>
                 </div>
-                <div class="tier-risk" :class="`risk-${t.risk}`">{{ t.risk }}</div>
+                <div class="tier-risks-row">
+                  <span class="tier-risk-item" v-for="r in t.risks" :key="r.axis">
+                    <span class="risk-axis-lbl">{{ r.label }}</span>
+                    <span class="tier-risk" :class="`risk-${r.level}`">{{ r.level }}</span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -54,7 +61,7 @@
     <!-- Dimensions -->
     <section class="dims-section">
       <div class="container">
-        <div class="section-label" style="margin-bottom:1.5rem;">Five cryptographic dimensions</div>
+        <div class="section-label" style="margin-bottom:1.5rem;">Five migration dimensions</div>
         <div class="dims-grid">
           <div class="dim-card" v-for="d in dims" :key="d.code" :style="`--c:${d.color}`">
             <div class="dim-code font-mono">{{ d.code }}</div>
@@ -83,7 +90,7 @@
             <div class="use-list">
               <div class="use-item" v-for="u in uses" :key="u.title">
                 <div class="use-title">{{ u.title }}</div>
-                <div class="use-body">{{ u.body }}</div>
+                <div class="use-body">{{ u.body }}<RouterLink v-if="u.link" :to="u.link.to" class="use-link">{{ u.link.text }}</RouterLink>{{ u.bodyAfter }}</div>
               </div>
             </div>
           </div>
@@ -116,10 +123,12 @@
           ></iframe>
           <div class="teaser-overlay">
             <div class="teaser-overlay-inner">
-              <p class="font-mono" style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.75rem;">Full access — free</p>
-              <button @click="openForm" class="btn" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.4);color:#fbbf24;font-size:0.8rem;padding:0.7rem 1.5rem;cursor:pointer;">
-                Get full access →
+              <button @click="openForm" class="btn amber-btn" style="font-size:0.8rem;padding:0.7rem 1.4rem;">
+                Preview framework →
               </button>
+              <a href="mailto:info@irekai.nl?subject=Request%3A%20IREKAI%20PQC%20Migration%20Maturity%20Model%20%E2%80%94%20Full%20Access&body=Hi%20IREKAI%2C%0A%0AI%27d%20like%20to%20request%20full%20access%20to%20the%20PQC%20Migration%20Maturity%20Model.%0A%0AOrganisation%3A%20%0AContact%20name%3A%20%0AContext%20(optional)%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you." class="btn btn-ghost" style="font-size:0.8rem;padding:0.7rem 1.4rem;">
+                Request full access →
+              </a>
             </div>
           </div>
         </div>
@@ -136,9 +145,9 @@
             <button class="modal-close" @click="closeForm" aria-label="Close">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
-            <div class="modal-label font-mono">Free access</div>
-            <h3 class="modal-heading font-display">Get the PQC Maturity Model</h3>
-            <p class="modal-sub">Fill in your details and the framework is yours immediately.</p>
+            <div class="modal-label font-mono">Free · Instant access</div>
+            <h3 class="modal-heading font-display">Preview the PQC Maturity Model</h3>
+            <p class="modal-sub">Fill in your details and the framework preview is yours immediately.</p>
 
             <form class="access-form" @submit.prevent="submitForm">
               <div class="form-row">
@@ -175,9 +184,9 @@
                 </svg>
               </div>
               <h3 class="modal-heading font-display">You're in, {{ form.name.split(' ')[0] }}.</h3>
-              <p class="modal-sub">Your copy of the IREKAI PQC Migration Maturity Model is ready.</p>
+              <p class="modal-sub">Your preview of the IREKAI PQC Migration Maturity Model is ready.</p>
               <a :href="docUrl" download class="btn form-submit-btn" style="text-align:center;justify-content:center;">
-                ↓ Download framework
+                ↓ Download preview
               </a>
               <p class="modal-note">
                 A copy will also be sent to {{ form.email }} within 24 hours.
@@ -197,11 +206,46 @@ import { ref, reactive } from 'vue'
 import { showCopiedToast } from '@/composables/useMailtoToast.js'
 
 const tiers = [
-  { n:1, name:'Initial',   sub:'Awareness & first steps',    risk:'critical', state:'t-done' },
-  { n:2, name:'Basic',     sub:'Processes & tooling',        risk:'high',     state:'t-active' },
-  { n:3, name:'Advanced',  sub:'Implementation underway',    risk:'medium',   state:'' },
-  { n:4, name:'Managed',   sub:'Systematic control',         risk:'low',      state:'' },
-  { n:5, name:'Optimised', sub:'Continuous excellence',      risk:'minimal',  state:'' },
+  { n:1, name:'Initial',   sub:'Awareness & first steps',   state:'t-done',
+    risks: [
+      { axis:'quantum',     label:'Quantum',    level:'critical' },
+      { axis:'supply',      label:'Supply',     level:'high'     },
+      { axis:'compliance',  label:'Compliance', level:'high'     },
+      { axis:'operational', label:'Ops',        level:'high'     },
+    ]
+  },
+  { n:2, name:'Basic',     sub:'Processes & tooling',        state:'t-active',
+    risks: [
+      { axis:'quantum',     label:'Quantum',    level:'high'     },
+      { axis:'supply',      label:'Supply',     level:'high'     },
+      { axis:'compliance',  label:'Compliance', level:'medium'   },
+      { axis:'operational', label:'Ops',        level:'medium'   },
+    ]
+  },
+  { n:3, name:'Advanced',  sub:'Implementation underway',    state:'t-future',
+    risks: [
+      { axis:'quantum',     label:'Quantum',    level:'medium'   },
+      { axis:'supply',      label:'Supply',     level:'medium'   },
+      { axis:'compliance',  label:'Compliance', level:'low'      },
+      { axis:'operational', label:'Ops',        level:'low'      },
+    ]
+  },
+  { n:4, name:'Managed',   sub:'Systematic control',         state:'t-future',
+    risks: [
+      { axis:'quantum',     label:'Quantum',    level:'low'      },
+      { axis:'supply',      label:'Supply',     level:'low'      },
+      { axis:'compliance',  label:'Compliance', level:'low'      },
+      { axis:'operational', label:'Ops',        level:'minimal'  },
+    ]
+  },
+  { n:5, name:'Optimised', sub:'Continuous excellence',      state:'t-future',
+    risks: [
+      { axis:'quantum',     label:'Quantum',    level:'minimal'  },
+      { axis:'supply',      label:'Supply',     level:'minimal'  },
+      { axis:'compliance',  label:'Compliance', level:'minimal'  },
+      { axis:'operational', label:'Ops',        level:'minimal'  },
+    ]
+  },
 ]
 
 const dims = [
@@ -213,25 +257,26 @@ const dims = [
 ]
 
 const values = [
-  'A shared language for cryptographic maturity across teams and leadership',
+  'A shared language for cryptographic maturity across organisations, teams and leadership',
   '104 concrete activities mapped to maturity tiers and dimensions',
   'Built-in dependency graph — see which activities unlock which',
-  'Risk profile at each tier across quantum, supply chain, compliance, and operational axes',
+  'Roadmap planning based on dependencies and your current state',
+  'High-level risk profile at each tier across quantum, supply chain, compliance, and operational axes',
   'Alignment with NIST, BSI, ETSI, NIS2, ISO 27001, and CNSA 2.0',
   'Export and import of organisational progress for reporting',
 ]
 
 const uses = [
-  { title: 'Baseline assessment', body: 'Map your current state in a structured workshop. Identify where you are on each dimension without guesswork.' },
+  { title: 'Baseline assessment', body: 'Map your current state in a structured workshop. Identify where you are on each dimension without guesswork. This is part of the ', link: { text: 'Quick Quantum Readiness Assessment', to: '/products/quantum-readiness' }, bodyAfter: '.' },
   { title: 'Roadmap creation',    body: 'Use tier requirements and the dependency graph to plan a realistic, sequenced migration roadmap.' },
-  { title: 'Board reporting',     body: 'Translate technical progress into a single maturity score and risk-reduction narrative for leadership.' },
+  { title: 'Board reporting',     body: 'Translate technical progress into a single maturity score and risk-reduction narrative for leadership and compliance.' },
   { title: 'Procurement',         body: 'Define quantum-readiness requirements for vendors and use the model to evaluate their responses.' },
 ]
 
 // ── Access form ──────────────────────────────────────────────────────────────
 
 // Replace with actual asset path when document is ready
-const docUrl = '/assets/irekai-pqc-maturity-model.pdf'
+const docUrl = '/assets/pqc-teaser.html'
 
 const formOpen = ref(false)
 const formDone = ref(false)
@@ -259,16 +304,21 @@ function submitForm() {
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
 /* Tier preview */
-.tier-preview-card { background: rgba(28,25,23,0.7); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
-.tier-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
-.tiers-mini { display: flex; flex-direction: column; gap: 0.6rem; }
-.tier-mini { display: grid; grid-template-columns: 2rem 1fr auto; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid transparent; opacity: 0.45; }
-.tier-mini.t-done { border-color: rgba(52,211,153,0.25); background: rgba(52,211,153,0.05); opacity: 1; }
-.tier-mini.t-active { border-color: rgba(251,191,36,0.35); background: rgba(251,191,36,0.05); opacity: 1; }
-.tier-num { font-size: 0.6rem; color: var(--text-dim); }
-.tier-name { font-size: 0.85rem; color: var(--text); }
-.tier-sub { font-size: 0.7rem; color: var(--text-dim); margin-top: 1px; }
-.tier-risk { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.45rem; border-radius: 3px; white-space: nowrap; }
+.tier-preview-card { background: rgba(28,25,23,0.7); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.25rem; }
+.tier-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.7rem; }
+.tiers-mini { display: flex; flex-direction: column; gap: 0.28rem; }
+.tier-mini { display: flex; flex-direction: column; gap: 0.3rem; padding: 0.45rem 0.6rem; border-radius: 7px; border: 1px solid transparent; opacity: 0.45; }
+.tier-mini.t-done   { border-color: rgba(52,211,153,0.25);  background: rgba(52,211,153,0.05);  opacity: 1; }
+.tier-mini.t-active { border-color: rgba(251,191,36,0.35);  background: rgba(251,191,36,0.05);  opacity: 1; }
+.tier-mini.t-future { border-color: rgba(168,162,158,0.15); background: rgba(168,162,158,0.03); opacity: 1; }
+.tier-mini-header { display: flex; align-items: center; gap: 0.6rem; }
+.tier-num { font-size: 0.58rem; color: var(--text-dim); flex-shrink: 0; width: 1.8rem; }
+.tier-name { font-size: 0.78rem; color: var(--text); line-height: 1.2; }
+.tier-sub { font-size: 0.63rem; color: var(--text-dim); margin-top: 1px; }
+.tier-risks-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem 0.4rem; padding-left: 2.4rem; }
+.tier-risk-item { display: flex; align-items: center; gap: 0.2rem; }
+.risk-axis-lbl { font-family: var(--font-mono); font-size: 0.5rem; color: var(--text-dim); letter-spacing: 0.04em; }
+.tier-risk { font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 3px; white-space: nowrap; }
 .risk-critical { background: rgba(239,68,68,0.12); color: #f87171; }
 .risk-high     { background: rgba(249,115,22,0.12); color: #fb923c; }
 .risk-medium   { background: rgba(234,179,8,0.12);  color: #facc15; }
@@ -277,12 +327,14 @@ function submitForm() {
 
 /* Dimensions */
 .dims-section { padding: 4rem 0; border-top: 1px solid var(--border); }
-.dims-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; }
-.dim-card { padding: 1.25rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); background: rgba(28,25,23,0.5); transition: border-color 0.2s; }
+.dims-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+@media (min-width: 640px)  { .dims-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 900px)  { .dims-grid { grid-template-columns: repeat(5, 1fr); } }
+.dim-card { padding: 1rem 1.1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); background: rgba(28,25,23,0.5); transition: border-color 0.2s; }
 .dim-card:hover { border-color: var(--c); }
-.dim-code { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--c); margin-bottom: 0.5rem; }
-.dim-name { font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; }
-.dim-blurb { font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); }
+.dim-code { font-size: 0.58rem; letter-spacing: 0.2em; color: var(--c); margin-bottom: 0.45rem; }
+.dim-name { font-size: 0.88rem; color: var(--text); margin-bottom: 0.45rem; line-height: 1.3; }
+.dim-blurb { font-size: 0.73rem; line-height: 1.55; color: var(--text-muted); }
 
 /* Value section */
 .value-section { padding: 4rem 0; border-top: 1px solid var(--border); }
@@ -296,15 +348,62 @@ function submitForm() {
 .use-list { display: flex; flex-direction: column; gap: 1.25rem; }
 .use-title { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
 .use-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
+.use-link { color: #fbbf24; text-decoration: none; border-bottom: 1px solid rgba(251,191,36,0.35); transition: border-color 0.15s; }
+.use-link:hover { border-color: #fbbf24; }
 
 /* Teaser section */
-.teaser-section { padding: 3rem 0 5rem; }
+.teaser-section { padding: 3rem 0 2rem; }
 .teaser-header { margin-bottom: 1.5rem; }
 .teaser-frame-wrap { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid rgba(251,191,36,0.2); background: #0c0a09; height: clamp(400px, 60vw, 600px); }
 .teaser-frame { width: 100%; height: 100%; border: none; display: block; pointer-events: none; }
-.teaser-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to bottom, transparent, rgba(12,10,9,0.92) 60%); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1.75rem; }
-.teaser-overlay-inner { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.teaser-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 140px; background: linear-gradient(to bottom, transparent, rgba(12,10,9,0.95) 55%); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1.75rem; }
+.teaser-overlay-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.6rem; }
 .amber-badge { background: rgba(251,191,36,0.1); color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+
+/* CTA split */
+.cta-split-section { padding: 2.5rem 0 5rem; border-top: 1px solid var(--border); }
+.cta-split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) { .cta-split-grid { grid-template-columns: 1fr 1fr; } }
+
+.cta-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 2rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(28,25,23,0.5);
+}
+.cta-card--preview {
+  border-color: rgba(251,191,36,0.25);
+  background: rgba(251,191,36,0.04);
+}
+.cta-card-title { font-size: 1.2rem; font-weight: 500; color: var(--text); }
+.cta-card-body { font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); flex: 1; }
+
+.amber-btn {
+  background: rgba(251,191,36,0.1);
+  border: 1px solid rgba(251,191,36,0.4);
+  color: #fbbf24;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.amber-btn:hover {
+  background: rgba(251,191,36,0.18);
+  border-color: rgba(251,191,36,0.7);
+  box-shadow: 0 0 18px -5px rgba(251,191,36,0.35);
+}
 
 /* ── Access form modal ─────────────────────────────────────────── */
 .modal-backdrop {

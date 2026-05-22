@@ -103,8 +103,10 @@
 
         <div class="products-grid">
           <RouterLink to="/products/quantum-readiness" class="product-card product-card--featured sage">
-            <div class="card-badge sage-badge">Featured · Flagship product</div>
-            <div class="card-badge available-badge">Available</div>
+            <div class="card-badges-row">
+              <div class="card-badge sage-badge">Featured · Flagship product</div>
+              <div class="card-badge available-badge">Available</div>
+            </div>
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -166,8 +168,35 @@
             <div class="card-cta">View programme <span class="arrow">→</span></div>
           </RouterLink>
 
+          <RouterLink to="/products/crypto-agility" class="product-card sky">
+            <div class="card-badges-row">
+              <div class="card-badge available-badge">Document · Available</div>
+              <div class="card-badge coming-soon-badge">CI/CD Tool · Coming soon</div>
+            </div>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Crypto Agility Best Practices</h3>
+            <p class="card-desc">
+              A free best practices document covering the eight foundations of crypto agility,
+              plus a paid CI/CD monitor that flags agility violations automatically on every
+              git push.
+            </p>
+            <div class="card-tags">
+              <span class="tag">8 practices</span>
+              <span class="tag">CI/CD integration</span>
+              <span class="tag">Policy-as-code</span>
+            </div>
+            <div class="card-cta">Explore <span class="arrow">→</span></div>
+          </RouterLink>
+
           <RouterLink to="/products/code-scanning" class="product-card fuchsia">
-            <div class="card-badge coming-soon-badge">Coming soon</div>
+            <div class="card-badges-row">
+              <div class="card-badge coming-soon-badge">Coming soon</div>
+              <div class="card-badge launching-badge">Launching customer needed</div>
+            </div>
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <polyline points="16 18 22 12 16 6"/>
@@ -321,15 +350,15 @@ const whyItems = [
     body: 'From the first boardroom conversation to continuous post-migration monitoring — IREKAI covers the full quantum transition lifecycle.',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`
   },
+   {
+    title: 'Actionable, not theoretical',
+    body: 'No lengthy consulting engagements that end in a shelf report. IREKAI delivers tools and actionable advice you can use today.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`
+  },
   {
     title: 'Standards-aligned',
     body: 'Aligned with FIPS 203/204/205, CNSA 2.0, NIS2, ISO 27001, and emerging EU regulations. Your compliance evidence is built in.',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
-  },
-  {
-    title: 'Actionable, not theoretical',
-    body: 'No lengthy consulting engagements that end in a shelf report. IREKAI delivers tools and actionable advice you can use today.',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`
   },
 ]
 </script>
@@ -543,11 +572,15 @@ const whyItems = [
 .product-card.violet:hover { border-color: rgba(167,139,250,0.45); box-shadow: 0 8px 40px -12px rgba(167,139,250,0.2); }
 .product-card.fuchsia{ --card-glow: rgba(232,121,249,0.08); --accent: var(--fuchsia); }
 .product-card.fuchsia:hover{ border-color: rgba(232,121,249,0.45); box-shadow: 0 8px 40px -12px rgba(232,121,249,0.2); }
+.product-card.sky    { --card-glow: rgba(56,189,248,0.08);  --accent: #38bdf8; }
+.product-card.sky:hover    { border-color: rgba(56,189,248,0.45);  box-shadow: 0 8px 40px -12px rgba(56,189,248,0.2); }
 
+.card-badges-row { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
 .card-badge { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 4px; display: inline-flex; align-self: flex-start; }
 .sage-badge { background: rgba(122,173,151,0.1); color: #7aad97; border: 1px solid rgba(122,173,151,0.3); }
 .available-badge { background: rgba(74,222,128,0.08); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
 .coming-soon-badge { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid rgba(167,139,250,0.35); }
+.launching-badge { background: rgba(251,191,36,0.08); color: #fbbf24; border: 1px solid rgba(251,191,36,0.35); }
 
 .card-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--accent, var(--text-muted)); flex-shrink: 0; }
 .card-icon svg { width: 20px; height: 20px; }

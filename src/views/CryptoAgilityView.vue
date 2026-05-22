@@ -4,9 +4,10 @@
       <div class="container">
         <div class="hero-top">
           <RouterLink to="/" class="breadcrumb">← Back to home</RouterLink>
-          <span class="badge" style="background:rgba(56,189,248,0.1);color:#38bdf8;border-color:rgba(56,189,248,0.35);">
-            Framework
-          </span>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <span class="badge" style="background:rgba(56,189,248,0.1);color:#38bdf8;border-color:rgba(56,189,248,0.35);">Document · Free</span>
+            <span class="badge" style="background:rgba(167,139,250,0.08);color:#a78bfa;border-color:rgba(167,139,250,0.3);">CI/CD Tool · Paid</span>
+          </div>
         </div>
 
         <div class="hero-body">
@@ -20,16 +21,17 @@
             </h1>
             <p class="hero-lead">
               Crypto agility is the ability to swap cryptographic algorithms, key sizes, and
-              protocols quickly — without architectural surgery. It is not a feature you add
-              at the end of a migration; it is the property that makes any future migration
-              manageable. These are the practices IREKAI assesses and recommends.
+              protocols quickly — without architectural surgery. IREKAI offers two things here:
+              a free best practices document covering the eight foundations of crypto agility,
+              and a paid CI/CD integration that flags agility violations automatically on every
+              git push — before they reach production.
             </p>
             <div class="hero-actions">
-              <RouterLink to="/products/code-scanning" class="btn btn-sky">
-                Assess your codebase with CryptoScope →
-              </RouterLink>
-              <a href="mailto:info@irekai.nl?subject=Crypto Agility Best Practices" class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
-                Talk to an expert
+              <button @click="openDoc" class="btn btn-sky">
+                Get best practices doc →
+              </button>
+              <a href="mailto:info@irekai.nl?subject=Request%3A%20Crypto%20Agility%20CI%2FCD%20Monitor&body=Hi%20IREKAI%2C%0A%0AI%27d%20like%20to%20learn%20more%20about%20the%20Crypto%20Agility%20CI%2FCD%20Monitor.%0A%0AOrganisation%3A%20%0AStack%20%2F%20CI%20platform%20(e.g.%20GitHub%20Actions%2C%20GitLab%20CI)%3A%20%0AContext%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you." class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
+                Request CI/CD tool →
               </a>
             </div>
           </div>
@@ -74,20 +76,18 @@
             </p>
           </div>
           <div>
-            <div class="section-label" style="margin-bottom:1.25rem;">How IREKAI uses this framework</div>
+            <div class="section-label" style="margin-bottom:1.25rem;">Two ways to act on this</div>
             <p class="intro-body">
-              These practices form the assessment criteria behind
-              <RouterLink to="/products/code-scanning" class="intro-link">CryptoScope</RouterLink>.
-              When CryptoScope analyses a scoped code environment, it checks each cryptographic
-              finding against these dimensions and scores the result. The output tells you not
-              just what algorithms are in use, but how easily they can be replaced —
-              and what needs to change first.
+              The <strong style="color:var(--text);font-weight:500;">best practices document</strong> translates these eight dimensions into
+              actionable guidance your teams can apply today — covering architecture patterns,
+              configuration templates, and migration sequencing. Free, immediately after you
+              share your details.
             </p>
             <p class="intro-body">
-              The framework is also used in IREKAI's
-              <RouterLink to="/products/quantum-readiness" class="intro-link">Quick Quantum Readiness Assessment</RouterLink>
-              to evaluate governance, process, and architectural readiness alongside the
-              technical findings.
+              The <strong style="color:var(--text);font-weight:500;">CI/CD Agility Monitor</strong> enforces these practices automatically.
+              It integrates with your pipeline and runs on every push — flagging hardcoded
+              algorithm strings, missing abstraction layers, deprecated primitives, and
+              policy violations before they reach production. Paid, priced per repository.
             </p>
           </div>
         </div>
@@ -122,35 +122,118 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
+    <!-- CTA split -->
+    <section class="cta-split-section">
       <div class="container">
-        <div class="cta-card">
-          <div>
-            <h3 class="font-display" style="font-size:1.4rem;margin-bottom:0.6rem;color:var(--text);">
-              Know where you stand against these practices
-            </h3>
-            <p class="prose" style="max-width:52ch;">
-              CryptoScope assesses your scoped code environments against each of these
-              dimensions and produces an evidence-backed agility score — tied to your
-              business cases, not a generic codebase sweep.
+        <div class="cta-split-grid">
+
+          <div class="cta-card cta-card--doc">
+            <div class="badge" style="background:rgba(56,189,248,0.08);color:#38bdf8;border-color:rgba(56,189,248,0.3);margin-bottom:0.85rem;">Free · Instant access</div>
+            <h3 class="font-display cta-card-title">Best Practices Document</h3>
+            <p class="cta-card-body">
+              A structured guide to all eight crypto agility dimensions — with architecture
+              patterns, configuration examples, and a self-assessment checklist your team
+              can use immediately.
             </p>
+            <button @click="openDoc" class="btn btn-sky" style="margin-top:auto;font-size:0.8rem;padding:0.75rem 1.6rem;">
+              Get the document →
+            </button>
           </div>
-          <div class="cta-actions">
-            <RouterLink to="/products/code-scanning" class="btn btn-sky" style="font-size:0.8rem;padding:0.75rem 1.6rem;">
-              Explore CryptoScope →
-            </RouterLink>
-            <RouterLink to="/products/quantum-readiness" class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
-              Start with an assessment
-            </RouterLink>
+
+          <div class="cta-card cta-card--tool">
+            <div class="badge" style="background:rgba(167,139,250,0.08);color:#a78bfa;border-color:rgba(167,139,250,0.3);margin-bottom:0.85rem;">Paid · Per repository</div>
+            <h3 class="font-display cta-card-title">CI/CD Agility Monitor</h3>
+            <p class="cta-card-body">
+              Automated crypto agility enforcement in your pipeline. Runs on every push —
+              flags hardcoded algorithms, missing abstraction layers, deprecated primitives,
+              and policy violations as inline warnings before they hit production.
+            </p>
+            <a href="mailto:info@irekai.nl?subject=Request%3A%20Crypto%20Agility%20CI%2FCD%20Monitor&body=Hi%20IREKAI%2C%0A%0AI%27d%20like%20to%20learn%20more%20about%20the%20Crypto%20Agility%20CI%2FCD%20Monitor.%0A%0AOrganisation%3A%20%0AStack%20%2F%20CI%20platform%20(e.g.%20GitHub%20Actions%2C%20GitLab%20CI)%3A%20%0AContext%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you."
+               class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;margin-top:auto;">
+              Request access →
+            </a>
           </div>
+
         </div>
       </div>
     </section>
+
+    <!-- Document access modal -->
+    <Transition name="modal">
+      <div v-if="docOpen" class="modal-backdrop" @click.self="closeDoc">
+        <div class="modal-card">
+
+          <template v-if="!docDone">
+            <button class="modal-close" @click="closeDoc" aria-label="Close">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="modal-label font-mono">Free · Instant access</div>
+            <h3 class="modal-heading font-display">Get the Crypto Agility Best Practices</h3>
+            <p class="modal-sub">Fill in your details and the document is yours immediately.</p>
+
+            <form class="access-form" @submit.prevent="submitDoc">
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label">Name</label>
+                  <input v-model="docForm.name" type="text" class="form-input" placeholder="Jane Smith" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Job title</label>
+                  <input v-model="docForm.title" type="text" class="form-input" placeholder="Security architect" required />
+                </div>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Company</label>
+                <input v-model="docForm.company" type="text" class="form-input" placeholder="Acme Corp" required />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Work email</label>
+                <input v-model="docForm.email" type="email" class="form-input" placeholder="jane@acme.com" required />
+              </div>
+              <button type="submit" class="btn form-submit-btn">Get instant access →</button>
+            </form>
+          </template>
+
+          <template v-else>
+            <div class="modal-success">
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <h3 class="modal-heading font-display">You're in, {{ docForm.name.split(' ')[0] }}.</h3>
+              <p class="modal-sub">Your copy of the IREKAI Crypto Agility Best Practices is ready.</p>
+              <a :href="docUrl" download class="btn form-submit-btn" style="text-align:center;justify-content:center;">
+                ↓ Download document
+              </a>
+              <p class="modal-note">A copy will also be sent to {{ docForm.email }} within 24 hours.</p>
+              <button class="modal-close-text font-mono" @click="closeDoc">Close</button>
+            </div>
+          </template>
+
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
+import { ref, reactive } from 'vue'
+import { showCopiedToast } from '@/composables/useMailtoToast.js'
+
+const docUrl   = '/assets/irekai-crypto-agility-best-practices.pdf'
+const docOpen  = ref(false)
+const docDone  = ref(false)
+const docForm  = reactive({ name: '', title: '', company: '', email: '' })
+
+function openDoc()  { docOpen.value = true;  docDone.value = false }
+function closeDoc() { docOpen.value = false }
+function submitDoc() {
+  navigator.clipboard.writeText('info@irekai.nl').then(() => showCopiedToast('info@irekai.nl'))
+  docDone.value = true
+}
+
 const scoreDims = [
   { name: 'Abstraction',    pct: 80, val: '8.0', color: '#38bdf8' },
   { name: 'Configurability',pct: 55, val: '5.5', color: '#38bdf8' },
@@ -284,16 +367,45 @@ const practices = [
 .signal-list { display: flex; flex-direction: column; gap: 0.35rem; }
 .signal { display: flex; align-items: flex-start; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); line-height: 1.5; }
 
-/* CTA */
-.cta-section { padding: 4rem 0 5rem; border-top: 1px solid var(--border); }
-.cta-card {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: flex-start;
-}
-@media (min-width: 768px) { .cta-card { flex-direction: row; align-items: center; justify-content: space-between; } }
-.cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; flex-shrink: 0; }
+/* CTA split */
+.cta-split-section { padding: 3rem 0 5rem; border-top: 1px solid var(--border); }
+.cta-split-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+@media (min-width: 768px) { .cta-split-grid { grid-template-columns: 1fr 1fr; } }
+.cta-card { display: flex; flex-direction: column; gap: 0.85rem; padding: 2rem; border-radius: 14px; border: 1px solid var(--border); background: rgba(28,25,23,0.5); }
+.cta-card--doc  { border-color: rgba(56,189,248,0.2);  background: rgba(56,189,248,0.04); }
+.cta-card--tool { border-color: rgba(167,139,250,0.2); background: rgba(167,139,250,0.04); }
+.cta-card-title { font-size: 1.2rem; font-weight: 500; color: var(--text); }
+.cta-card-body  { font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); flex: 1; }
+
+/* Modal */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(12,10,9,0.82); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 999; padding: 1.5rem; }
+.modal-card { background: #1a1714; border: 1px solid rgba(56,189,248,0.25); border-radius: 16px; padding: 2.25rem 2.5rem; width: 100%; max-width: 480px; position: relative; }
+.modal-close { position: absolute; top: 1.1rem; right: 1.1rem; width: 28px; height: 28px; background: transparent; border: none; cursor: pointer; color: var(--text-dim); transition: color 0.15s; padding: 0; display: flex; align-items: center; justify-content: center; }
+.modal-close:hover { color: var(--text); }
+.modal-close svg { width: 16px; height: 16px; }
+.modal-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #38bdf8; opacity: 0.8; margin-bottom: 0.75rem; }
+.modal-heading { font-size: 1.35rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+.modal-sub { font-size: 0.85rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 1.75rem; }
+.access-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+.form-input { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 7px; padding: 0.6rem 0.85rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); outline: none; transition: border-color 0.15s; width: 100%; box-sizing: border-box; }
+.form-input::placeholder { color: var(--text-dim); }
+.form-input:focus { border-color: rgba(56,189,248,0.5); }
+.form-submit-btn { background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.45); color: #38bdf8; font-family: var(--font-mono); font-size: 0.8rem; padding: 0.8rem 1.5rem; border-radius: 7px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; margin-top: 0.5rem; }
+.form-submit-btn:hover { background: rgba(56,189,248,0.2); border-color: rgba(56,189,248,0.7); box-shadow: 0 0 20px -6px rgba(56,189,248,0.4); }
+.modal-success { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; padding: 0.5rem 0; }
+.success-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.25); display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem; }
+.success-icon svg { width: 24px; height: 24px; }
+.modal-note { font-size: 0.75rem; color: var(--text-dim); line-height: 1.6; max-width: 34ch; }
+.modal-close-text { background: none; border: none; cursor: pointer; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-dim); padding: 0; transition: color 0.15s; margin-top: 0.5rem; }
+.modal-close-text:hover { color: var(--text-muted); }
+.modal-enter-active, .modal-leave-active { transition: opacity 0.2s ease; }
+.modal-enter-active .modal-card, .modal-leave-active .modal-card { transition: transform 0.25s cubic-bezier(.2,0,.2,1), opacity 0.2s ease; }
+.modal-enter-from, .modal-leave-to { opacity: 0; }
+.modal-enter-from .modal-card, .modal-leave-to .modal-card { transform: translateY(16px) scale(0.97); opacity: 0; }
 
 .btn-sky {
   display: inline-flex; align-items: center; gap: 0.5rem;
