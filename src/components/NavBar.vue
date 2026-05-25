@@ -89,11 +89,12 @@ const isScrolled = ref(false)
 const dropdownRef = ref(null)
 
 const products = [
-  { to: '/products/quantum-readiness',   label: 'Quick Quantum Readiness Assessment',  color: '#7aad97' },
-  { to: '/products/maturity-model',      label: 'PQC Maturity Model',            color: '#fbbf24' },
-  { to: '/products/supplier-management', label: 'Supplier Management Programme',  color: '#a78bfa' },
-  { to: '/products/code-scanning',       label: 'CryptoScope',                   color: '#e879f9' },
-  { to: '/products/crypto-agility',     label: 'Crypto Agility Best Practices', color: '#38bdf8' },
+  { to: '/products/quantum-readiness',   label: 'Quick Quantum Readiness Assessment', color: '#7aad97' },
+  { to: '/products/board-briefing',      label: 'Board & CISO Briefing Pack',         color: '#d4a574' },
+  { to: '/products/code-scanning',       label: 'CryptoScope',                        color: '#e879f9' },
+  { to: '/products/crypto-agility',      label: 'Crypto Agility Best Practices',      color: '#38bdf8' },
+  { to: '/products/maturity-model',      label: 'PQC Maturity Model',                color: '#fbbf24' },
+  { to: '/products/supplier-management', label: 'Supplier Management Programme',      color: '#fb7185' },
 ]
 
 const isProductsRoute = computed(() => route.path.startsWith('/products'))
@@ -222,6 +223,9 @@ onUnmounted(() => {
 .mobile-link-sage { color: #7aad97; }
 .mobile-divider { border: none; border-top: 1px solid var(--border); margin: .5rem 0; }
 
-.mobile-menu-enter-active, .mobile-menu-leave-active { transition: opacity .2s, transform .2s; }
-.mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-8px); }
+.mobile-menu-enter-active, .mobile-menu-leave-active { transition: opacity .2s ease; }
+.mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; }
+
+.dropdown-enter-active, .dropdown-leave-active { transition: opacity .15s ease, transform .15s ease; }
+.dropdown-enter-from, .dropdown-leave-to { opacity: 0; transform: translateX(-50%) translateY(-4px); }
 </style>

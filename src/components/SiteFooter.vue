@@ -29,10 +29,11 @@
         <div class="footer-nav-col">
           <div class="footer-nav-label">Products</div>
           <RouterLink to="/products/quantum-readiness"   class="footer-link">Quick Quantum Readiness Assessment</RouterLink>
-          <RouterLink to="/products/maturity-model"      class="footer-link">PQC Maturity Model</RouterLink>
-          <RouterLink to="/products/supplier-management" class="footer-link">Supplier Management</RouterLink>
+          <RouterLink to="/products/board-briefing"      class="footer-link">Board & CISO Briefing Pack</RouterLink>
           <RouterLink to="/products/code-scanning"       class="footer-link">CryptoScope</RouterLink>
-          <RouterLink to="/products/crypto-agility"     class="footer-link">Crypto Agility Best Practices</RouterLink>
+          <RouterLink to="/products/crypto-agility"      class="footer-link">Crypto Agility Best Practices</RouterLink>
+          <RouterLink to="/products/maturity-model"      class="footer-link">PQC Maturity Model</RouterLink>
+          <RouterLink to="/products/supplier-management" class="footer-link">Supplier Management Programme</RouterLink>
         </div>
         <div class="footer-nav-col">
           <div class="footer-nav-label">Company</div>

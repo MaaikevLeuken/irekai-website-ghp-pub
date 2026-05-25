@@ -11,6 +11,7 @@ const SupplierMgmtView     = () => import('@/views/SupplierManagementView.vue')
 const QuantumReadinessView = () => import('@/views/QuantumReadinessView.vue')
 const CodeScanningView     = () => import('@/views/CodeScanningView.vue')
 const CryptoAgilityView    = () => import('@/views/CryptoAgilityView.vue')
+const BoardBriefingView    = () => import('@/views/BoardBriefingView.vue')
 
 const routes = [
   { path: '/',                      component: HomeView,             meta: { title: 'IREKAI' } },
@@ -20,6 +21,7 @@ const routes = [
   { path: '/products/quantum-readiness',    component: QuantumReadinessView, meta: { title: 'Quick Quantum Readiness Assessment — IREKAI' } },
   { path: '/products/code-scanning',        component: CodeScanningView,     meta: { title: 'CryptoScope — IREKAI' } },
   { path: '/products/crypto-agility',       component: CryptoAgilityView,    meta: { title: 'Crypto Agility Best Practices — IREKAI' } },
+  { path: '/products/board-briefing',       component: BoardBriefingView,    meta: { title: 'Board & CISO Briefing Pack — IREKAI' } },
 ]
 
 const router = createRouter({

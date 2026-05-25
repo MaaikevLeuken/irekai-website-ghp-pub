@@ -12,7 +12,7 @@
         <div class="hero-body">
           <div class="hero-text">
             <div class="section-label" style="margin-bottom:1rem;color:#fbbf24;opacity:0.85;">
-              02 · PQC Migration Maturity Model
+              PQC Migration Maturity Model
             </div>
             <h1 class="hero-h1 font-display">
               Five tiers. Five dimensions.<br/>
@@ -206,7 +206,7 @@ import { ref, reactive } from 'vue'
 import { showCopiedToast } from '@/composables/useMailtoToast.js'
 
 const tiers = [
-  { n:1, name:'Initial',   sub:'Awareness & first steps',   state:'t-done',
+  { n:1, name:'Initial',   sub:'Awareness & first steps',   state:'t-1',
     risks: [
       { axis:'quantum',     label:'Quantum',    level:'critical' },
       { axis:'supply',      label:'Supply',     level:'high'     },
@@ -214,7 +214,7 @@ const tiers = [
       { axis:'operational', label:'Ops',        level:'high'     },
     ]
   },
-  { n:2, name:'Basic',     sub:'Processes & tooling',        state:'t-active',
+  { n:2, name:'Basic',     sub:'Processes & tooling',        state:'t-2',
     risks: [
       { axis:'quantum',     label:'Quantum',    level:'high'     },
       { axis:'supply',      label:'Supply',     level:'high'     },
@@ -222,7 +222,7 @@ const tiers = [
       { axis:'operational', label:'Ops',        level:'medium'   },
     ]
   },
-  { n:3, name:'Advanced',  sub:'Implementation underway',    state:'t-future',
+  { n:3, name:'Advanced',  sub:'Implementation underway',    state:'t-3',
     risks: [
       { axis:'quantum',     label:'Quantum',    level:'medium'   },
       { axis:'supply',      label:'Supply',     level:'medium'   },
@@ -230,7 +230,7 @@ const tiers = [
       { axis:'operational', label:'Ops',        level:'low'      },
     ]
   },
-  { n:4, name:'Managed',   sub:'Systematic control',         state:'t-future',
+  { n:4, name:'Managed',   sub:'Systematic control',         state:'t-4',
     risks: [
       { axis:'quantum',     label:'Quantum',    level:'low'      },
       { axis:'supply',      label:'Supply',     level:'low'      },
@@ -238,7 +238,7 @@ const tiers = [
       { axis:'operational', label:'Ops',        level:'minimal'  },
     ]
   },
-  { n:5, name:'Optimised', sub:'Continuous excellence',      state:'t-future',
+  { n:5, name:'Optimised', sub:'Continuous excellence',      state:'t-5',
     risks: [
       { axis:'quantum',     label:'Quantum',    level:'minimal'  },
       { axis:'supply',      label:'Supply',     level:'minimal'  },
@@ -267,7 +267,7 @@ const values = [
 ]
 
 const uses = [
-  { title: 'Baseline assessment', body: 'Map your current state in a structured workshop. Identify where you are on each dimension without guesswork. This is part of the ', link: { text: 'Quick Quantum Readiness Assessment', to: '/products/quantum-readiness' }, bodyAfter: '.' },
+  { title: 'Baseline assessment', body: 'Map your current state in a structured workshop. Identify where you are on each dimension without guesswork. Your team can do this on their own, or with IREKAI consultancy support through the ', link: { text: 'Quick Quantum Readiness Assessment', to: '/products/quantum-readiness' }, bodyAfter: '.' },
   { title: 'Roadmap creation',    body: 'Use tier requirements and the dependency graph to plan a realistic, sequenced migration roadmap.' },
   { title: 'Board reporting',     body: 'Translate technical progress into a single maturity score and risk-reduction narrative for leadership and compliance.' },
   { title: 'Procurement',         body: 'Define quantum-readiness requirements for vendors and use the model to evaluate their responses.' },
@@ -307,12 +307,14 @@ function submitForm() {
 .tier-preview-card { background: rgba(28,25,23,0.7); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.25rem; }
 .tier-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.7rem; }
 .tiers-mini { display: flex; flex-direction: column; gap: 0.28rem; }
-.tier-mini { display: flex; flex-direction: column; gap: 0.3rem; padding: 0.45rem 0.6rem; border-radius: 7px; border: 1px solid transparent; opacity: 0.45; }
-.tier-mini.t-done   { border-color: rgba(52,211,153,0.25);  background: rgba(52,211,153,0.05);  opacity: 1; }
-.tier-mini.t-active { border-color: rgba(251,191,36,0.35);  background: rgba(251,191,36,0.05);  opacity: 1; }
-.tier-mini.t-future { border-color: rgba(168,162,158,0.15); background: rgba(168,162,158,0.03); opacity: 1; }
+.tier-mini { display: flex; flex-direction: column; gap: 0.3rem; padding: 0.45rem 0.6rem; border-radius: 7px; border: 1px solid transparent; }
+.tier-mini.t-1 { border-color: rgba(248,113,113,0.35); background: rgba(248,113,113,0.07); --tc: #f87171; }
+.tier-mini.t-2 { border-color: rgba(251,146,60,0.35);  background: rgba(251,146,60,0.07);  --tc: #fb923c; }
+.tier-mini.t-3 { border-color: rgba(250,204,21,0.35);  background: rgba(250,204,21,0.07);  --tc: #facc15; }
+.tier-mini.t-4 { border-color: rgba(163,230,53,0.35);  background: rgba(163,230,53,0.07);  --tc: #a3e635; }
+.tier-mini.t-5 { border-color: rgba(52,211,153,0.35);  background: rgba(52,211,153,0.07);  --tc: #34d399; }
 .tier-mini-header { display: flex; align-items: center; gap: 0.6rem; }
-.tier-num { font-size: 0.58rem; color: var(--text-dim); flex-shrink: 0; width: 1.8rem; }
+.tier-num { font-size: 0.58rem; color: var(--tc, var(--text-dim)); flex-shrink: 0; width: 1.8rem; }
 .tier-name { font-size: 0.78rem; color: var(--text); line-height: 1.2; }
 .tier-sub { font-size: 0.63rem; color: var(--text-dim); margin-top: 1px; }
 .tier-risks-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem 0.4rem; padding-left: 2.4rem; }

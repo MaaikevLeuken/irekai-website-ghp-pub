@@ -4,19 +4,19 @@
       <div class="container">
         <div class="hero-top">
           <RouterLink to="/" class="breadcrumb">← Back to home</RouterLink>
-          <span class="badge" style="background:rgba(167,139,250,0.1);color:#a78bfa;border-color:rgba(167,139,250,0.35);">
+          <span class="badge" style="background:rgba(251,113,133,0.1);color:#fb7185;border-color:rgba(251,113,133,0.35);">
             Programme
           </span>
         </div>
 
         <div class="hero-body">
           <div class="hero-text">
-            <div class="section-label" style="margin-bottom:1rem;color:#a78bfa;opacity:0.85;">
-              03 · Quantum Threat Supplier Management Programme
+            <div class="section-label" style="margin-bottom:1rem;color:#fb7185;opacity:0.85;">
+              Quantum Threat Supplier Management Programme
             </div>
             <h1 class="hero-h1 font-display">
               Your direct control ends<br/>
-              <em style="color:#a78bfa">where your vendors begin.</em>
+              <em style="color:#fb7185">where your vendors begin.</em>
             </h1>
             <p class="hero-lead">
               Third-party cryptographic risk is an underestimated exposure surface in
@@ -24,7 +24,7 @@
               tools, templates, and processes to extend quantum-readiness across your entire supply chain.
             </p>
             <div class="hero-actions">
-              <button @click="openPreview" class="btn violet-btn">
+              <button @click="openPreview" class="btn rose-btn">
                 Preview overview →
               </button>
               <a href="mailto:info@irekai.nl?subject=Request%3A%20Quantum%20Threat%20Supplier%20Management%20Programme" class="btn btn-ghost" style="font-size:0.8rem;padding:0.75rem 1.5rem;">
@@ -108,21 +108,21 @@
 
           <!-- Preview card -->
           <div class="cta-card cta-card--preview">
-            <div class="badge violet-badge" style="margin-bottom:0.85rem;">Free · Instant access</div>
+            <div class="badge rose-badge" style="margin-bottom:0.85rem;">Free · Instant access</div>
             <h3 class="font-display cta-card-title">Programme overview</h3>
             <p class="cta-card-body">
               A high-level overview of the Quantum Threat Supplier Management Programme —
               including the assessment framework, programme phases, and sample deliverables.
               Free, immediately after you share your details.
             </p>
-            <button @click="openPreview" class="btn violet-btn" style="margin-top:auto;">
+            <button @click="openPreview" class="btn rose-btn" style="margin-top:auto;">
               Get preview document →
             </button>
           </div>
 
           <!-- Full programme card -->
           <div class="cta-card cta-card--full">
-            <div class="badge" style="background:rgba(167,139,250,0.06);color:#a78bfa;border-color:rgba(167,139,250,0.2);margin-bottom:0.85rem;">Full engagement</div>
+            <div class="badge" style="background:rgba(251,113,133,0.06);color:#fb7185;border-color:rgba(251,113,133,0.2);margin-bottom:0.85rem;">Full engagement</div>
             <h3 class="font-display cta-card-title">Full programme</h3>
             <p class="cta-card-body">
               Ready to run the programme across your supplier base? Get in touch and we'll
@@ -183,7 +183,7 @@
           <template v-else>
             <div class="modal-success">
               <div class="success-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="1.5">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                   <polyline points="22 4 12 14.01 9 11.01"/>
                 </svg>
@@ -320,10 +320,10 @@ const outcomes = [
 .phase-card {
   padding: 1.4rem;
   border-radius: 12px;
-  border: 1px solid rgba(167,139,250,0.2);
-  background: rgba(167,139,250,0.04);
+  border: 1px solid rgba(251,113,133,0.2);
+  background: rgba(251,113,133,0.04);
 }
-.phase-num { font-size: 0.6rem; letter-spacing: 0.2em; color: #a78bfa; margin-bottom: 0.5rem; }
+.phase-num { font-size: 0.6rem; letter-spacing: 0.2em; color: #fb7185; margin-bottom: 0.5rem; }
 .phase-name { font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; }
 .phase-desc { font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 0.75rem; }
 .phase-items { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; padding: 0; }
@@ -334,7 +334,7 @@ const outcomes = [
   padding-left: 1rem;
   position: relative;
 }
-.phase-items li::before { content: '·'; position: absolute; left: 0; color: #a78bfa; }
+.phase-items li::before { content: '·'; position: absolute; left: 0; color: #fb7185; }
 
 /* Included */
 .included-section { padding: 4rem 0; border-top: 1px solid var(--border); }
@@ -343,7 +343,7 @@ const outcomes = [
 
 .included-list { display: flex; flex-direction: column; gap: 1.5rem; }
 .included-item { display: flex; gap: 0.85rem; align-items: flex-start; }
-.included-icon { width: 20px; height: 20px; color: #a78bfa; flex-shrink: 0; margin-top: 0.1rem; }
+.included-icon { width: 20px; height: 20px; color: #fb7185; flex-shrink: 0; margin-top: 0.1rem; }
 .included-icon svg { width: 100%; height: 100%; }
 .included-title { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
 .included-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
@@ -357,7 +357,7 @@ const outcomes = [
   line-height: 1.6;
   color: var(--text-muted);
 }
-.outcome-check { color: #a78bfa; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.1rem; }
+.outcome-check { color: #fb7185; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.1rem; }
 
 /* CTA split */
 .cta-split-section { padding: 3rem 0 5rem; border-top: 1px solid var(--border); }
@@ -378,16 +378,16 @@ const outcomes = [
   background: rgba(28,25,23,0.5);
 }
 .cta-card--preview {
-  border-color: rgba(167,139,250,0.25);
-  background: rgba(167,139,250,0.04);
+  border-color: rgba(251,113,133,0.25);
+  background: rgba(251,113,133,0.04);
 }
 .cta-card-title { font-size: 1.2rem; font-weight: 500; color: var(--text); }
 .cta-card-body { font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); flex: 1; }
 
-.violet-btn {
-  background: rgba(167,139,250,0.1);
-  border: 1px solid rgba(167,139,250,0.4);
-  color: #a78bfa;
+.rose-btn {
+  background: rgba(251,113,133,0.1);
+  border: 1px solid rgba(251,113,133,0.4);
+  color: #fb7185;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   padding: 0.75rem 1.6rem;
@@ -398,12 +398,12 @@ const outcomes = [
   display: inline-flex;
   align-items: center;
 }
-.violet-btn:hover {
-  background: rgba(167,139,250,0.18);
-  border-color: rgba(167,139,250,0.7);
-  box-shadow: 0 0 18px -5px rgba(167,139,250,0.35);
+.rose-btn:hover {
+  background: rgba(251,113,133,0.18);
+  border-color: rgba(251,113,133,0.7);
+  box-shadow: 0 0 18px -5px rgba(251,113,133,0.35);
 }
-.violet-badge { background: rgba(167,139,250,0.1); color: #a78bfa; border-color: rgba(167,139,250,0.3); }
+.rose-badge { background: rgba(251,113,133,0.1); color: #fb7185; border-color: rgba(251,113,133,0.3); }
 
 /* ── Preview modal ─────────────────────────────────────────────── */
 .modal-backdrop {
@@ -419,7 +419,7 @@ const outcomes = [
 }
 .modal-card {
   background: #1a1714;
-  border: 1px solid rgba(167,139,250,0.25);
+  border: 1px solid rgba(251,113,133,0.25);
   border-radius: 16px;
   padding: 2.25rem 2.5rem;
   width: 100%;
@@ -435,7 +435,7 @@ const outcomes = [
 }
 .modal-close:hover { color: var(--text); }
 .modal-close svg { width: 16px; height: 16px; }
-.modal-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #a78bfa; opacity: 0.8; margin-bottom: 0.75rem; }
+.modal-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #fb7185; opacity: 0.8; margin-bottom: 0.75rem; }
 .modal-heading { font-size: 1.35rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
 .modal-sub { font-size: 0.85rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 1.75rem; }
 
@@ -451,18 +451,18 @@ const outcomes = [
   outline: none; transition: border-color 0.15s; width: 100%; box-sizing: border-box;
 }
 .form-input::placeholder { color: var(--text-dim); }
-.form-input:focus { border-color: rgba(167,139,250,0.5); }
+.form-input:focus { border-color: rgba(251,113,133,0.5); }
 .form-submit-btn {
-  background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.45); color: #a78bfa;
+  background: rgba(251,113,133,0.12); border: 1px solid rgba(251,113,133,0.45); color: #fb7185;
   font-family: var(--font-mono); font-size: 0.8rem; padding: 0.8rem 1.5rem;
   border-radius: 7px; cursor: pointer; transition: all 0.2s;
   display: inline-flex; align-items: center; gap: 0.5rem;
   text-decoration: none; margin-top: 0.5rem;
 }
-.form-submit-btn:hover { background: rgba(167,139,250,0.2); border-color: rgba(167,139,250,0.7); box-shadow: 0 0 20px -6px rgba(167,139,250,0.4); }
+.form-submit-btn:hover { background: rgba(251,113,133,0.2); border-color: rgba(251,113,133,0.7); box-shadow: 0 0 20px -6px rgba(251,113,133,0.4); }
 
 .modal-success { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; padding: 0.5rem 0; }
-.success-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(167,139,250,0.08); border: 1px solid rgba(167,139,250,0.25); display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem; }
+.success-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(251,113,133,0.08); border: 1px solid rgba(251,113,133,0.25); display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem; }
 .success-icon svg { width: 24px; height: 24px; }
 .modal-note { font-size: 0.75rem; color: var(--text-dim); line-height: 1.6; max-width: 34ch; }
 .modal-close-text { background: none; border: none; cursor: pointer; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-dim); padding: 0; transition: color 0.15s; margin-top: 0.5rem; }

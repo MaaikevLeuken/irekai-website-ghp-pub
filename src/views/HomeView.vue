@@ -126,70 +126,29 @@
             <div class="card-cta">Start assessment <span class="arrow">→</span></div>
           </RouterLink>
 
-          <RouterLink to="/products/maturity-model" class="product-card amber">
-            <div class="card-badge available-badge">Available</div>
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M2 20h20M6 20V10M12 20V4M18 20v-8"/>
-              </svg>
-            </div>
-            <h3 class="card-title">PQC Migration Maturity Model</h3>
-            <p class="card-desc">
-              A five-tier maturity framework across five dimensions. Track your progress,
-              identify gaps, and drive your quantum migration with structured milestones.
-            </p>
-            <div class="card-tags">
-              <span class="tag">Framework</span>
-              <span class="tag">5 dimensions</span>
-              <span class="tag">Interactive</span>
-            </div>
-            <div class="card-cta">Explore model <span class="arrow">→</span></div>
-          </RouterLink>
-
-          <RouterLink to="/products/supplier-management" class="product-card violet">
-            <div class="card-badge available-badge">Available</div>
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </div>
-            <h3 class="card-title">Supplier Management Programme</h3>
-            <p class="card-desc">
-              Quantum threats are pushed up the supply chain. Systematically assess vendors and
-              embed PQC and CBOM requirements in contracts
-            </p>
-            <div class="card-tags">
-              <span class="tag">Supply chain</span>
-              <span class="tag">Risk assessment</span>
-              <span class="tag">Contracts</span>
-            </div>
-            <div class="card-cta">View programme <span class="arrow">→</span></div>
-          </RouterLink>
-
-          <RouterLink to="/products/crypto-agility" class="product-card sky">
+          <RouterLink to="/products/board-briefing" class="product-card gold">
             <div class="card-badges-row">
-              <div class="card-badge available-badge">Document · Available</div>
-              <div class="card-badge coming-soon-badge">CI/CD Tool · Coming soon</div>
+              <div class="card-badge available-badge">Deck · Free</div>
+              <div class="card-badge request-badge">Tailored · On request</div>
             </div>
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4"/>
+                <path d="M7 8h10M7 12h6"/>
               </svg>
             </div>
-            <h3 class="card-title">Crypto Agility Best Practices</h3>
+            <h3 class="card-title">Board & CISO Briefing Pack</h3>
             <p class="card-desc">
-              A free best practices document covering the eight foundations of crypto agility,
-              plus a paid CI/CD monitor that flags agility violations automatically on every
-              git push.
+              A ready-made executive slide deck explaining the quantum threat, your sector's regulatory timeline,
+              and the path to quantum-safe cryptography. Download free, or hire IREKAI to present and tailor it to your organisation.
             </p>
             <div class="card-tags">
-              <span class="tag">8 practices</span>
-              <span class="tag">CI/CD integration</span>
-              <span class="tag">Policy-as-code</span>
+              <span class="tag">Executive</span>
+              <span class="tag">Slide deck</span>
+              <span class="tag">Tailored delivery</span>
             </div>
-            <div class="card-cta">Explore <span class="arrow">→</span></div>
+            <div class="card-cta">Get the deck <span class="arrow">→</span></div>
           </RouterLink>
 
           <RouterLink to="/products/code-scanning" class="product-card fuchsia">
@@ -215,6 +174,72 @@
               <span class="tag">CBOM</span>
             </div>
             <div class="card-cta">Learn more <span class="arrow">→</span></div>
+          </RouterLink>
+
+          <RouterLink to="/products/crypto-agility" class="product-card sky">
+            <div class="card-badges-row">
+              <div class="card-badge available-badge">Document · Available</div>
+              <div class="card-badge coming-soon-badge">CI/CD Tool · Coming soon</div>
+            </div>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Crypto Agility Best Practices</h3>
+            <p class="card-desc">
+              A free best practices document covering the eight foundations of crypto agility,
+              plus a on-demand CI/CD monitor that flags agility violations automatically on every
+              git push.
+            </p>
+            <div class="card-tags">
+              <span class="tag">8 practices</span>
+              <span class="tag">CI/CD integration</span>
+              <span class="tag">Policy-as-code</span>
+            </div>
+            <div class="card-cta">Explore <span class="arrow">→</span></div>
+          </RouterLink>
+
+          <RouterLink to="/products/maturity-model" class="product-card amber">
+            <div class="card-badge available-badge">Available</div>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 20h20M6 20V10M12 20V4M18 20v-8"/>
+              </svg>
+            </div>
+            <h3 class="card-title">PQC Migration Maturity Model</h3>
+            <p class="card-desc">
+              A five-tier maturity framework across five dimensions. Track your progress,
+              identify gaps, and drive your quantum migration with structured milestones.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Framework</span>
+              <span class="tag">5 dimensions</span>
+              <span class="tag">Interactive</span>
+            </div>
+            <div class="card-cta">Explore model <span class="arrow">→</span></div>
+          </RouterLink>
+
+          <RouterLink to="/products/supplier-management" class="product-card rose">
+            <div class="card-badge available-badge">Available</div>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Supplier Management Programme</h3>
+            <p class="card-desc">
+              Quantum threats are pushed up the supply chain. Systematically assess vendors and
+              embed PQC and CBOM requirements in contracts.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Supply chain</span>
+              <span class="tag">Risk assessment</span>
+              <span class="tag">Contracts</span>
+            </div>
+            <div class="card-cta">View programme <span class="arrow">→</span></div>
           </RouterLink>
         </div>
       </div>
@@ -570,10 +595,14 @@ const whyItems = [
 .product-card.amber:hover  { border-color: rgba(251,191,36,0.45);  box-shadow: 0 8px 40px -12px rgba(251,191,36,0.2); }
 .product-card.violet { --card-glow: rgba(167,139,250,0.08); --accent: var(--violet); }
 .product-card.violet:hover { border-color: rgba(167,139,250,0.45); box-shadow: 0 8px 40px -12px rgba(167,139,250,0.2); }
+.product-card.rose   { --card-glow: rgba(251,113,133,0.08);  --accent: #fb7185; }
+.product-card.rose:hover   { border-color: rgba(251,113,133,0.45);  box-shadow: 0 8px 40px -12px rgba(251,113,133,0.2); }
 .product-card.fuchsia{ --card-glow: rgba(232,121,249,0.08); --accent: var(--fuchsia); }
 .product-card.fuchsia:hover{ border-color: rgba(232,121,249,0.45); box-shadow: 0 8px 40px -12px rgba(232,121,249,0.2); }
 .product-card.sky    { --card-glow: rgba(56,189,248,0.08);  --accent: #38bdf8; }
 .product-card.sky:hover    { border-color: rgba(56,189,248,0.45);  box-shadow: 0 8px 40px -12px rgba(56,189,248,0.2); }
+.product-card.gold   { --card-glow: rgba(212,165,116,0.08); --accent: #d4a574; }
+.product-card.gold:hover   { border-color: rgba(212,165,116,0.45); box-shadow: 0 8px 40px -12px rgba(212,165,116,0.2); }
 
 .card-badges-row { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
 .card-badge { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 4px; display: inline-flex; align-self: flex-start; }
@@ -581,6 +610,7 @@ const whyItems = [
 .available-badge { background: rgba(74,222,128,0.08); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
 .coming-soon-badge { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid rgba(167,139,250,0.35); }
 .launching-badge { background: rgba(251,191,36,0.08); color: #fbbf24; border: 1px solid rgba(251,191,36,0.35); }
+.request-badge   { background: rgba(212,165,116,0.08); color: #d4a574; border: 1px solid rgba(212,165,116,0.35); }
 
 .card-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--accent, var(--text-muted)); flex-shrink: 0; }
 .card-icon svg { width: 20px; height: 20px; }

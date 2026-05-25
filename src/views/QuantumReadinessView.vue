@@ -13,7 +13,7 @@
         <div class="hero-body">
           <div class="hero-text">
             <div class="section-label" style="margin-bottom:1rem;color:#2dd4bf;opacity:0.8;">
-              01 · Quick Quantum Readiness Assessment
+              Quick Quantum Readiness Assessment
             </div>
             <h1 class="hero-h1 font-display">
               Know your quantum<br/>
@@ -34,24 +34,18 @@
           <div class="hero-visual">
             <div class="readiness-dial-card">
               <div class="dial-label font-mono">Sample output</div>
-              <div class="dial-rings">
-                <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="60" cy="60" r="54" stroke="rgba(41,37,36,1)" stroke-width="12"/>
-                  <circle cx="60" cy="60" r="54" stroke="#2dd4bf" stroke-width="12"
-                          stroke-dasharray="339.3" stroke-dashoffset="220.5"
-                          stroke-linecap="round" transform="rotate(-90 60 60)"
-                          style="filter:drop-shadow(0 0 6px rgba(45,212,191,0.6))"/>
-                  <text x="60" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif"
-                        font-size="20" fill="#e7e5e4">35</text>
-                  <text x="60" y="70" text-anchor="middle" font-family="'JetBrains Mono',monospace"
-                        font-size="7" fill="#78716c" letter-spacing="1">/ 100</text>
-                </svg>
+              <div class="qs-score-block">
+                <div class="qs-big-number font-display">38<span class="qs-pct">%</span></div>
+                <div class="qs-score-label font-mono">quantum-safe</div>
+                <div class="qs-tier-pill font-mono">Tier 2 — Initial</div>
               </div>
-              <div class="dial-legend">
-                <div class="dial-legend-row" v-for="d in dialItems" :key="d.label">
-                  <div class="dial-dot" :style="`background:${d.color}`"></div>
-                  <span class="dial-name">{{ d.label }}</span>
-                  <span class="dial-score" :style="`color:${d.color}`">{{ d.score }}</span>
+              <div class="qs-dims">
+                <div class="qs-dim-row" v-for="d in dialItems" :key="d.label">
+                  <span class="qs-dim-name">{{ d.label }}</span>
+                  <div class="qs-dim-track">
+                    <div class="qs-dim-fill" :style="`width:${d.pct}%;background:${d.color};box-shadow:0 0 6px -1px ${d.color}55`"></div>
+                  </div>
+                  <span class="qs-dim-val font-mono" :style="`color:${d.color}`">{{ d.pct }}%</span>
                 </div>
               </div>
             </div>
@@ -76,7 +70,9 @@
                 </div>
                 <div>
                   <div class="deliverable-title">{{ d.title }}</div>
-                  <div class="deliverable-body">{{ d.body }}</div>
+                  <div class="deliverable-body">
+                    {{ d.body }}<template v-if="d.link"> <RouterLink :to="d.link.to" class="inline-link">{{ d.link.text }}</RouterLink>{{ d.link.after || '' }}</template>
+                  </div>
                 </div>
               </div>
             </div>
@@ -97,6 +93,41 @@
       </div>
     </section>
 
+    <!-- Roadmap sample -->
+    <section class="roadmap-section">
+      <div class="container">
+        <div class="roadmap-header">
+          <div class="section-label" style="margin-bottom:0.5rem;">Sample deliverable — Migration roadmap</div>
+          <p class="roadmap-intro">A concrete, phased action plan tailored to your organisation. Each phase is based on your assessment scores, business priorities, and compliance deadlines.</p>
+        </div>
+        <div class="roadmap-timeline">
+          <div
+            v-for="(m, i) in roadmapMilestones.slice(0, 4)"
+            :key="m.id"
+            class="rm-item"
+          >
+            <!-- node row with connecting lines -->
+            <div class="rm-top">
+              <div class="rm-line" :style="i === 0 ? 'opacity:0' : `background:${m.color}44`"></div>
+              <div class="rm-node" :style="`--nc:${m.color}`">
+                <span class="rm-node-num font-mono">{{ String(m.id).padStart(2,'0') }}</span>
+              </div>
+              <div class="rm-line" :style="i === 3 ? 'opacity:0' : `background:${roadmapMilestones[i+1].color}44`"></div>
+            </div>
+            <!-- label -->
+            <div class="rm-content">
+              <div class="rm-phase-label font-mono" :style="`color:${m.color}`">{{ m.phaseLabel }}</div>
+              <div class="rm-title">{{ m.title }}</div>
+              <div class="rm-tag font-mono">{{ m.tag }}</div>
+            </div>
+          </div>
+        </div>
+        <p class="roadmap-disclaimer font-mono">
+          * Sequence and timeline are tailored to your assessment results, team capacity, and regulatory deadlines.
+        </p>
+      </div>
+    </section>
+
     <!-- Areas covered -->
     <section class="areas-section">
       <div class="container">
@@ -112,20 +143,37 @@
     </section>
 
     <!-- Intake questionnaire -->
-    <section class="intake-section">
+    <section class="intake-section" id="readiness-profile">
       <div class="container">
+        <div class="intake-split">
 
-        <div class="intake-intro" v-if="step === 0">
-          <div class="badge" style="background:rgba(45,212,191,0.1);color:#2dd4bf;border-color:rgba(45,212,191,0.3);margin-bottom:1.25rem;">
-            Quick readiness profile
+          <!-- Left: static context -->
+          <div class="intake-left">
+            <div class="badge" style="background:rgba(45,212,191,0.1);color:#2dd4bf;border-color:rgba(45,212,191,0.3);margin-bottom:1.25rem;">
+              Quick readiness profile
+            </div>
+            <h3 class="font-display intake-heading">
+              Not sure where<br/>to start?
+            </h3>
+            <p class="intake-lead">
+              Answer a few quick questions to get a rough readiness profile.
+              We'll use your answers to tailor our approach and reach out with a
+              proposal that fits your organisation.
+            </p>
+            <div class="intake-left-bullets">
+              <div class="ilb-item" v-for="b in profileBullets" :key="b">
+                <span class="ilb-dot"></span>
+                <span>{{ b }}</span>
+              </div>
+            </div>
           </div>
-          <h3 class="font-display intake-heading">
-            Not sure where to start?<br/>
-            <em style="color:#2dd4bf">Tell us about your situation.</em>
-          </h3>
-          <p class="intake-lead">
-            Answer five quick questions to get a rough readiness profile. We'll use your answers
-            to tailor our approach — and reach out to you with a concrete proposal that fits your organisation.
+
+          <!-- Right: interactive form -->
+          <div class="intake-right">
+
+        <div class="intake-intro-card" v-if="step === 0">
+          <p class="intake-intro-body">
+            Takes about 2 minutes. No sign-up required — just tell us about your organisation and rate yourself across the five migration dimensions.
           </p>
           <button class="btn btn-teal intake-start-btn" @click="step = 1">
             Get my quick profile →
@@ -310,9 +358,30 @@
             </button>
           </div>
 
-        </div>
+        </div><!-- end intake-flow -->
+          </div><!-- end intake-right -->
+        </div><!-- end intake-split -->
       </div>
     </section>
+
+    <!-- Fixed right-side quick profile tab -->
+    <div class="profile-tab" v-if="step === 0">
+      <div class="profile-tab-inner">
+        <div class="profile-tab-heading font-mono">Quick<br/>Readiness<br/>Profile</div>
+        <div class="profile-tab-divider"></div>
+        <div class="profile-tab-perks">
+          <div class="profile-tab-perk" v-for="p in tabPerks" :key="p">
+            <svg viewBox="0 0 12 12" fill="none" stroke="#2dd4bf" stroke-width="1.5" style="width:10px;height:10px;flex-shrink:0;margin-top:2px">
+              <polyline points="2,6 5,9 10,3"/>
+            </svg>
+            <span>{{ p }}</span>
+          </div>
+        </div>
+        <a href="#readiness-profile" class="profile-tab-cta font-mono" @click.prevent="scrollToProfile">
+          Start now →
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -320,19 +389,19 @@
 import { ref, computed, reactive } from 'vue'
 
 const dialItems = [
-  { label: 'Crypto Agility',     score: '2 / 10', color: '#e879f9' },
-  { label: 'Asset Inventory',    score: '4 / 10', color: '#22d3ee' },
-  { label: 'PQC Availability',   score: '1 / 10', color: '#34d399' },
-  { label: 'Governance',         score: '5 / 10', color: '#fbbf24' },
-  { label: 'Supplier Management',score: '3 / 10', color: '#a78bfa' },
+  { label: 'Crypto Agility',      pct: 22, color: '#e879f9' },
+  { label: 'Asset Inventory',     pct: 45, color: '#22d3ee' },
+  { label: 'PQC Availability',    pct: 18, color: '#34d399' },
+  { label: 'Governance',          pct: 55, color: '#fbbf24' },
+  { label: 'Supplier Management', pct: 30, color: '#a78bfa' },
 ]
 
 const deliverables = [
-  { title: 'Common understanding',      body: 'A company-wide shared understanding of the quantum threat to cryptography.' },
-  { title: 'Readiness score',           body: 'A single composite score across five cryptographic dimensions — easy to communicate to higher management. Underpinned by detailed scores for crypto agility, inventory, PQC availability, governance, and supplier management.' },
-  { title: 'Critical business cases',   body: 'Identification and prioritisation of key business cases relying on quantum-vulnerable cryptography.' },
-  { title: 'Risk heat map',             body: 'A high-level risk assessment, indicating your highest-priority vulnerabilities by business impact and urgency.' },
-  { title: 'Migration roadmap',         body: 'A short and medium-term migration roadmap tailored to your organisation, outlining concrete actions.' },
+  { title: 'Migration roadmap',         body: 'The centrepiece of the assessment: a phased, prioritised roadmap of concrete migration actions tailored to your organisation — from quick wins to multi-year programmes. Actionable from day one.' },
+  { title: 'Quantum-safe score',        body: 'A single percentage showing how much of your cryptographic posture is quantum-safe today, broken down across five migration dimensions. Derived from the ', link: { to: '/products/maturity-model', text: 'PQC Migration Maturity Model', after: ' — so your score maps directly to a maturity tier and tracks progress over time.' } },
+  { title: 'Common understanding',      body: 'A company-wide shared understanding of the quantum threat to cryptography, built collaboratively across teams during the workshops.' },
+  { title: 'Critical business cases',   body: 'Identification and prioritisation of key business cases relying on quantum-vulnerable cryptography, ranked by business impact.' },
+  { title: 'Risk heat map',             body: 'A high-level risk assessment indicating your highest-priority vulnerabilities by business impact and urgency across all five dimensions.' },
 ]
 
 const steps = [
@@ -350,6 +419,68 @@ const areas = [
   { code:'04', name:'Governance',          color:'#fbbf24', desc:'Is quantum risk owned and funded? We evaluate executive sponsorship, policy, roadmaps, and compliance alignment.' },
   { code:'05', name:'Supplier Management', color:'#a78bfa', desc:'Are your vendors quantum-ready? We assess supply chain visibility, contract requirements, and SBOM/CBOM coverage.' },
 ]
+
+const roadmapMilestones = [
+  {
+    id: 1, phase: 1, phaseLabel: 'Governance · Month 1–2', color: '#2dd4bf',
+    title: 'Establish crypto ownership & executive sponsorship',
+    desc: 'Assign a crypto transition owner, secure board-level commitment, and define the quantum risk appetite. Without this, nothing moves.',
+    tag: 'Governance',
+  },
+  {
+    id: 2, phase: 1, phaseLabel: 'Scoping · Month 1–3', color: '#2dd4bf',
+    title: 'Identify core business cases relying on quantum-vulnerable cryptography',
+    desc: 'Map which business processes, data flows, and systems depend on RSA, ECC, or DH — ranked by sensitivity, data-retention period, and business criticality.',
+    tag: 'Asset inventory',
+  },
+  {
+    id: 3, phase: 2, phaseLabel: 'Assessment · Month 2–5', color: '#fbbf24',
+    title: 'Perform software analysis on the code bases of your most critical business cases',
+    desc: 'Scan repositories and dependencies to locate every cryptographic library call, key-management pattern, and algorithm usage. Build your initial CBOM.',
+    tag: 'Crypto Agility · CryptoScope',
+  },
+  {
+    id: 4, phase: 2, phaseLabel: 'Quick win · Month 3–6', color: '#fbbf24',
+    title: 'Integrate crypto-agility checks in CI/CD pipeline',
+    desc: 'Block new quantum-vulnerable algorithm usage at the PR stage. Prevent technical debt from accumulating while the broader migration is under way.',
+    tag: 'Crypto Agility',
+  },
+  {
+    id: 5, phase: 3, phaseLabel: 'Migration · Month 6–12', color: '#e879f9',
+    title: 'Migrate highest-risk systems to hybrid post-quantum algorithms',
+    desc: 'Start with data-in-transit for your highest-sensitivity business cases. Use hybrid schemes (classical + PQC) to maintain compatibility while gaining quantum resistance.',
+    tag: 'PQC Availability',
+  },
+  {
+    id: 6, phase: 3, phaseLabel: 'Supply chain · Month 6–12', color: '#e879f9',
+    title: 'Extend quantum-safe requirements to critical suppliers',
+    desc: 'Issue updated questionnaires, embed PQC and CBOM provisions in contracts, and track vendor readiness across your supply chain.',
+    tag: 'Supplier Management',
+  },
+  {
+    id: 7, phase: 4, phaseLabel: 'Hardening · Month 12–24+', color: '#a78bfa',
+    title: 'Full PQC rollout & continuous maturity improvement',
+    desc: 'Complete production migration across all critical systems, retire legacy algorithms on a fixed schedule, and re-assess maturity annually to close emerging gaps.',
+    tag: 'All dimensions',
+  },
+]
+
+const profileBullets = [
+  'Rough readiness tier across five migration dimensions',
+  'Sector-specific regulatory context',
+  'Pre-filled assessment request email to send to IREKAI',
+]
+
+const tabPerks = [
+  'Readiness tier in 2 minutes',
+  'No sign-up required',
+  'Pre-filled request email',
+]
+
+function scrollToProfile() {
+  step.value = 1
+  document.getElementById('readiness-profile')?.scrollIntoView({ behavior: 'smooth' })
+}
 
 // ── Intake questionnaire ─────────────────────────────────────────────────────
 
@@ -482,16 +613,31 @@ function restart() {
 .hero-lead { font-size: 1rem; line-height: 1.75; color: var(--text-muted); max-width: 56ch; margin-bottom: 2rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-/* Dial card */
+/* Hero output card */
 .readiness-dial-card { background: rgba(28,25,23,0.7); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; }
-.dial-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
-.dial-rings { display: flex; justify-content: center; margin-bottom: 1.5rem; }
-.dial-rings svg { width: 120px; height: 120px; }
-.dial-legend { display: flex; flex-direction: column; gap: 0.55rem; }
-.dial-legend-row { display: flex; align-items: center; gap: 0.6rem; }
-.dial-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-.dial-name { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); flex: 1; }
-.dial-score { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; }
+.dial-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.25rem; }
+
+/* Quantum-safe score block */
+.qs-score-block { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; gap: 0.3rem; }
+.qs-big-number { font-size: 3.5rem; font-weight: 500; line-height: 1; color: var(--text); }
+.qs-pct { font-size: 1.8rem; color: #2dd4bf; }
+.qs-score-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: #2dd4bf; opacity: 0.85; }
+.qs-tier-pill {
+  margin-top: 0.4rem;
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.25rem 0.65rem; border-radius: 4px;
+  border: 1px solid rgba(251,191,36,0.35);
+  background: rgba(251,191,36,0.07);
+  color: #fbbf24;
+}
+
+/* Dimension bars */
+.qs-dims { display: flex; flex-direction: column; gap: 0.6rem; }
+.qs-dim-row { display: flex; align-items: center; gap: 0.6rem; }
+.qs-dim-name { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-dim); width: 120px; flex-shrink: 0; }
+.qs-dim-track { flex: 1; height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+.qs-dim-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease; }
+.qs-dim-val { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600; width: 2.5rem; text-align: right; flex-shrink: 0; }
 
 /* Content sections */
 .content-section { padding: 4rem 0; border-top: 1px solid var(--border); }
@@ -504,12 +650,91 @@ function restart() {
 .deliverable-icon svg { width: 100%; height: 100%; }
 .deliverable-title { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
 .deliverable-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
+.inline-link { color: #2dd4bf; text-decoration: none; border-bottom: 1px solid rgba(45,212,191,0.35); transition: border-color 0.15s; }
+.inline-link:hover { border-color: #2dd4bf; }
 
 .steps { display: flex; flex-direction: column; gap: 1.25rem; }
 .step { display: flex; gap: 1rem; align-items: flex-start; }
 .step-num { font-family: var(--font-mono); font-size: 0.65rem; color: #2dd4bf; opacity: 0.7; min-width: 1.8rem; padding-top: 0.15rem; }
 .step-title { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
 .step-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
+
+/* Roadmap section */
+.roadmap-section { padding: 4rem 0; border-top: 1px solid var(--border); }
+.roadmap-header { margin-bottom: 2.5rem; }
+.roadmap-intro { font-size: 0.875rem; line-height: 1.75; color: var(--text-muted); max-width: 60ch; margin-top: 0.5rem; }
+
+/* Horizontal timeline */
+.roadmap-timeline {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.rm-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 160px;
+}
+
+.rm-top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.rm-line {
+  flex: 1;
+  height: 1px;
+}
+
+.rm-node {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--nc, rgba(255,255,255,0.2));
+  background: rgba(12,10,9,1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px -3px var(--nc, transparent);
+  transition: box-shadow 0.2s;
+}
+.rm-item:hover .rm-node { box-shadow: 0 0 20px -2px var(--nc, transparent); }
+.rm-node-num { font-size: 0.6rem; letter-spacing: 0.08em; color: var(--nc); }
+
+.rm-content {
+  text-align: center;
+  padding: 0 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.rm-phase-label {
+  font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase;
+  opacity: 0.75;
+}
+.rm-title {
+  font-family: var(--font-display);
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+}
+.rm-tag {
+  font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0.15rem 0.5rem; border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.03);
+  display: inline-block;
+}
+
+.roadmap-disclaimer { font-size: 0.6rem; letter-spacing: 0.04em; color: var(--text-dim); opacity: 0.6; }
 
 /* Areas */
 .areas-section { padding: 4rem 0; border-top: 1px solid var(--border); }
@@ -521,16 +746,46 @@ function restart() {
 .area-desc { font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); }
 
 /* ── Intake section ──────────────────────────────────────────── */
-.intake-section { padding: 3rem 0 5rem; border-top: 1px solid var(--border); }
+.intake-section { padding: 4rem 0 5rem; border-top: 1px solid var(--border); }
 
-/* Intro state */
-.intake-intro { max-width: 560px; }
-.intake-heading { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 500; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
-.intake-lead { font-size: 0.9rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 2rem; max-width: 52ch; }
-.intake-start-btn { font-size: 0.8rem; padding: 0.8rem 1.75rem; }
+/* Two-column split */
+.intake-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (min-width: 860px) {
+  .intake-split { grid-template-columns: 1fr 1fr; }
+}
+
+/* Left column */
+.intake-left { }
+.intake-heading { font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 500; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
+.intake-lead { font-size: 0.9rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 1.5rem; max-width: 44ch; }
+
+.intake-left-bullets { display: flex; flex-direction: column; gap: 0.6rem; }
+.ilb-item { display: flex; align-items: baseline; gap: 0.65rem; font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
+.ilb-dot { width: 5px; height: 5px; border-radius: 50%; background: #2dd4bf; opacity: 0.7; flex-shrink: 0; margin-top: 0.35rem; }
+
+/* Right column – intro card (step 0) */
+.intake-right { min-width: 0; }
+.intake-intro-card {
+  background: rgba(28,25,23,0.7);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.intake-intro-icon { width: 36px; height: 36px; opacity: 0.8; }
+.intake-intro-icon svg { width: 100%; height: 100%; }
+.intake-intro-body { font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); }
+.intake-start-btn { font-size: 0.8rem; padding: 0.8rem 1.75rem; align-self: flex-start; }
 
 /* Progress */
-.intake-flow { max-width: 680px; }
+.intake-flow { max-width: 100%; }
 .intake-progress { display: flex; align-items: center; gap: 0; margin-bottom: 2.5rem; }
 .progress-step { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
 .progress-dot {
@@ -683,6 +938,82 @@ function restart() {
   padding: 0; transition: color 0.15s;
 }
 .intake-restart:hover { color: var(--text-muted); }
+
+/* Fixed quick-profile tab */
+.profile-tab {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+}
+.profile-tab-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 168px;
+  padding: 1.25rem 1.1rem 1.1rem;
+  border-radius: 12px 0 0 12px;
+  border: 1px solid rgba(45,212,191,0.45);
+  border-right: none;
+  background: #0d1514;
+  box-shadow: -4px 0 32px -6px rgba(45,212,191,0.2);
+  text-align: center;
+}
+.profile-tab-heading {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2dd4bf;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.profile-tab-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(45,212,191,0.2);
+  margin-bottom: 1rem;
+}
+.profile-tab-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1.1rem;
+}
+.profile-tab-perk {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  text-align: left;
+}
+.profile-tab-perk span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.profile-tab-cta {
+  display: block;
+  width: 100%;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(45,212,191,0.45);
+  background: rgba(45,212,191,0.1);
+  color: #2dd4bf;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.profile-tab-cta:hover {
+  background: rgba(45,212,191,0.2);
+  border-color: rgba(45,212,191,0.75);
+  box-shadow: 0 0 14px -3px rgba(45,212,191,0.3);
+}
+@media (max-width: 1100px) { .profile-tab { display: none; } }
 
 /* btn-teal local fallback */
 .btn-teal {

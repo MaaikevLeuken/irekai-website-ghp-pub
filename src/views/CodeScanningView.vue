@@ -12,7 +12,7 @@
         <div class="hero-body">
           <div class="hero-text">
             <div class="section-label" style="margin-bottom:1rem;color:#e879f9;opacity:0.85;">
-              04 · CryptoScope
+              CryptoScope
             </div>
             <h1 class="hero-h1 font-display">
               Start with business impact.<br/>

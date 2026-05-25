@@ -13,7 +13,7 @@
         <div class="hero-body">
           <div class="hero-text">
             <div class="section-label" style="margin-bottom:1rem;color:#38bdf8;opacity:0.85;">
-              05 · Crypto Agility Best Practices
+              Crypto Agility Best Practices
             </div>
             <h1 class="hero-h1 font-display">
               The foundations of a<br/>
