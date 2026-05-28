@@ -6,7 +6,7 @@
         <div class="hero-top">
           <RouterLink to="/" class="breadcrumb">← Back to home</RouterLink>
           <div class="hero-badges">
-            <span class="badge" style="background:rgba(74,222,128,0.08);color:#4ade80;border-color:rgba(74,222,128,0.3);">Deck · Free</span>
+            <span class="badge" style="background:rgba(74,222,128,0.08);color:#4ade80;border-color:rgba(74,222,128,0.3);">PDF · Free</span>
             <span class="badge" style="background:rgba(212,165,116,0.08);color:#d4a574;border-color:rgba(212,165,116,0.3);">Tailored delivery · On request</span>
           </div>
         </div>
@@ -21,10 +21,10 @@
               <em style="color:#d4a574">aligned on quantum risk.</em>
             </h1>
             <p class="hero-lead">
-              A ready-made executive slide deck that explains the quantum threat, your sector's
-              regulatory timeline, and the migration path — without requiring the audience to
-              understand the cryptography. Download free, or engage IREKAI to present and
-              tailor it to your organisation's specific business cases and risk profile.
+              A ready-made executive slide deck that explains the quantum threat,
+              regulatory timelines, and the migration path — without requiring the audience to
+              understand the cryptography. Download the PDF free, or engage IREKAI to present,
+              tailor, and deliver it — including access to the editable source file.
             </p>
             <div class="hero-actions">
               <button class="btn btn-gold" @click="openDeck">
@@ -42,24 +42,13 @@
 
           <div class="hero-visual">
             <div class="slide-preview-card">
-              <div class="slide-label font-mono">Slide preview</div>
-              <div class="mock-slide">
-                <div class="mock-slide-header">
-                  <div class="mock-logo font-mono">IREKAI</div>
-                  <div class="mock-slide-num font-mono">01 / 12</div>
-                </div>
-                <div class="mock-slide-body">
-                  <div class="mock-tag font-mono">Executive briefing</div>
-                  <div class="mock-title font-display">The Quantum Threat<br/>to Cryptography</div>
-                  <div class="mock-sub">What it means for {{ previewSector }} organisations<br/>and what to do about it</div>
-                </div>
-                <div class="mock-slide-footer">
-                  <div class="mock-date font-mono">2025 · Confidential</div>
-                  <div class="mock-dots">
-                    <span v-for="n in 12" :key="n" class="mock-dot" :class="{active: n===1}"></span>
-                  </div>
-                </div>
-              </div>
+              <div class="slide-label font-mono">Slide preview · Title slide</div>
+              <img
+                :src="titleSlideUrl"
+                alt="Title slide of the IREKAI Board Briefing deck — Board Briefing on The Quantum Threat to &lt;COMPANY&gt;"
+                class="slide-preview-image"
+                loading="lazy"
+              />
               <div class="slide-outline">
                 <div class="outline-item font-mono" v-for="s in slideOutline" :key="s.n">
                   <span class="outline-n">{{ s.n }}</span>
@@ -97,23 +86,23 @@
             <div class="section-label" style="margin-bottom:1.25rem;">Two ways to use it</div>
             <div class="use-list">
               <div class="use-card use-card--free">
-                <div class="use-card-badge font-mono">Free download</div>
+                <div class="use-card-badge font-mono">PDF download · Free</div>
                 <h4 class="use-card-title font-display">Self-serve</h4>
                 <p class="use-card-body">
-                  Download the deck and present it yourself. Works best when an internal
+                  Download the deck as a PDF and present it yourself. Works best when an internal
                   champion already understands the topic and needs a polished set of slides
                   to bring leadership up to speed.
                 </p>
-                <div class="use-card-note font-mono">Behind a short sign-up · No cost</div>
-                <button class="btn btn-gold use-card-btn" @click="openDeck">Get the deck →</button>
+                <div class="use-card-note font-mono">Read-only · IREKAI branding must remain · Behind a short sign-up</div>
+                <button class="btn btn-gold use-card-btn" @click="openDeck">Get the PDF →</button>
               </div>
               <div class="use-card use-card--paid">
                 <div class="use-card-badge font-mono">On request</div>
                 <h4 class="use-card-title font-display">IREKAI presents</h4>
                 <p class="use-card-body">
-                  Hire IREKAI to deliver the briefing to your board or CISO. We tailor every
+                  Hire an IREKAI expert to deliver the briefing to your board or CISO. We tailor every
                   slide to your sector, regulatory context, and business cases — and we handle
-                  the Q&A. Includes a one-page follow-up summary memo.
+                  the Q&A. Includes a one-page follow-up summary memo and access to the editable source file.
                 </p>
                 <div class="use-card-note font-mono">Custom scope · Day-rate engagement</div>
                 <a :href="tailoredMailto" class="btn btn-ghost use-card-btn" style="font-size:0.78rem;padding:0.65rem 1.25rem;">Request a proposal →</a>
@@ -148,10 +137,34 @@
             <div class="modal-label font-mono">Board &amp; CISO Briefing Pack</div>
             <h3 class="modal-heading font-display">Get the executive deck</h3>
             <p class="modal-sub">
-              Free to download. We'll send it to your email and let you know when
+              Free to download as a PDF. We'll send it to your email and notify you when
               an updated version is released.
             </p>
+            <p class="modal-licence">
+              The PDF is licensed for internal use only. IREKAI branding may not be removed
+              or altered. To receive the editable source file, <a :href="tailoredMailto" style="color:#d4a574;">request a tailored engagement</a>.
+            </p>
             <form class="modal-form" @submit.prevent="submitDeck">
+              <div class="modal-field">
+                <label class="modal-field-label">Language</label>
+                <div class="lang-toggle" role="radiogroup" aria-label="Deck language">
+                  <button
+                    v-for="opt in languageOptions"
+                    :key="opt.code"
+                    type="button"
+                    role="radio"
+                    :aria-checked="selectedLanguage === opt.code"
+                    :disabled="!opt.available"
+                    class="lang-toggle-btn"
+                    :class="{ 'is-active': selectedLanguage === opt.code, 'is-disabled': !opt.available }"
+                    @click="opt.available && (selectedLanguage = opt.code)"
+                  >
+                    <span class="lang-toggle-flag" aria-hidden="true">{{ opt.flag }}</span>
+                    <span class="lang-toggle-label">{{ opt.label }}</span>
+                    <span v-if="!opt.available" class="lang-toggle-note font-mono">Coming soon</span>
+                  </button>
+                </div>
+              </div>
               <div class="modal-field">
                 <label class="modal-field-label">Name</label>
                 <input v-model="deckForm.name" type="text" class="modal-input" placeholder="Your name" required/>
@@ -168,7 +181,7 @@
                 <label class="modal-field-label">Your role</label>
                 <input v-model="deckForm.role" type="text" class="modal-input" placeholder="e.g. CISO, Head of Security" />
               </div>
-              <button type="submit" class="btn btn-gold modal-submit">Send me the deck →</button>
+              <button type="submit" class="btn btn-gold modal-submit">Send me the PDF →</button>
             </form>
           </div>
 
@@ -181,9 +194,10 @@
             </div>
             <h3 class="modal-heading font-display">You're on the list</h3>
             <p class="modal-sub">
-              We'll send the deck to <strong>{{ deckForm.email }}</strong> shortly.
-              In the meantime, feel free to request a tailored presentation.
+              We've also sent the <strong>{{ selectedLanguageLabel }}</strong> deck to <strong>{{ deckForm.email }}</strong>.
+              You can download it right now using the link below.
             </p>
+            <a :href="deckPdfUrl" target="_blank" rel="noopener" class="btn btn-gold" style="font-size:0.8rem;padding:0.75rem 1.4rem;">Download the PDF ({{ selectedLanguageLabel }}) →</a>
             <a :href="tailoredMailto" class="btn btn-ghost" style="font-size:0.78rem;padding:0.65rem 1.25rem;">Request tailored delivery →</a>
           </div>
         </div>
@@ -193,35 +207,34 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 // ── Hero visual ──────────────────────────────────────────────────────
-const previewSector = 'financial services'
+// Title-slide image rendered from page 1 of the deck PDF.
+const titleSlideUrl = `${import.meta.env.BASE_URL}assets/board_briefing_title_slide.png`
 
+// Matches the four sections of the PUBLIC board briefing deck.
 const slideOutline = [
-  { n: '01', title: 'What is the quantum threat?' },
-  { n: '02', title: 'Timeline & harvest-now-decrypt-later' },
-  { n: '03', title: 'Regulatory landscape (NIS2, DORA, CNSA 2.0)' },
-  { n: '04', title: 'Your sector\'s exposure' },
-  { n: '05', title: 'Five migration dimensions' },
-  { n: '06', title: 'What quantum-safe looks like' },
-  { n: '07', title: 'Recommended next steps' },
+  { n: '01', title: 'The Quantum Threat' },
+  { n: '02', title: 'Post-Quantum Cryptography' },
+  { n: '03', title: 'Cryptographic Migration' },
+  { n: '04', title: 'Necessities' },
 ]
 
 // ── Deck contents ────────────────────────────────────────────────────
+// Mirrors the four sections of the PUBLIC board briefing PDF.
 const deckContents = [
-  { title: 'The quantum threat, plainly explained', body: 'No maths required. Slides that any board member or executive can follow — from "what is Shor\'s algorithm" to "why RSA breaks" in two minutes.' },
-  { title: 'Regulatory timeline & deadlines', body: 'NIST FIPS 203/204/205, CNSA 2.0, DORA, NIS2, and EU CRA — mapped to a single timeline showing which deadlines are already running.' },
-  { title: 'Harvest-now-decrypt-later explained', body: 'The threat that makes quantum risk urgent today, even before quantum computers exist. Illustrated with concrete data-lifetime examples.' },
-  { title: 'Five migration dimensions', body: 'Crypto agility, asset inventory, PQC availability, governance, and supplier management — each explained with a slide on what "good" looks like.' },
-  { title: 'Recommended next steps', body: 'A clear three-slide call to action: what the organisation should mandate in the next 30, 90, and 180 days.' },
+  { title: 'Section 01 · The quantum threat', body: 'Why the quantum computer breaks the cryptography we rely on today. From a plain-language overview of cryptography (confidentiality, integrity, authentication, non-repudiation) to symmetric vs asymmetric, one-way functions, Shor\'s algorithm, and the concept of Q-day — the moment a cryptographically relevant quantum computer arrives.' },
+  { title: 'Section 02 · Post-quantum cryptography', body: 'How PQC replaces what\'s broken. The mathematical families that survive quantum attack (lattice, hash, code, multivariate, isogeny) and the NIST-standardised algorithms now available — ML-KEM, ML-DSA, SLH-DSA — for key encapsulation and digital signatures.' },
+  { title: 'Section 03 · Cryptographic migration', body: 'The numbers that frame the timeline: data is already at risk through harvest-now-decrypt-later, migrations take 5–10+ years, and PQC deadlines land in 2030 (US) and 2035 (EU). Illustrated with the SHA-1 migration — 13 years from first practical attack to removal deadline — and a MOSCA-based approach to migration planning.' },
+  { title: 'Section 04 · What we need from the board', body: 'A concrete ask: a PQC Champion empowered to drive the migration across the organisation, a multi-year budget, engineering and product-owner time, a board decision on which data must remain confidential past ~2035, external support where needed, and agreed metrics to track progress.' },
 ]
 
 // ── Who it's for ─────────────────────────────────────────────────────
 const audiences = [
   {
     role: 'CISOs & security leaders',
-    desc: 'Get your board to fund and prioritise the quantum transition. The deck gives you the narrative to turn a technical topic into a business risk conversation.',
+    desc: 'Get your board to fund and prioritise the migration to post-quantum cryptography. The deck gives you the narrative to turn a technical topic into a business risk conversation.',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
   },
   {
@@ -236,7 +249,7 @@ const audiences = [
   },
   {
     role: 'Internal champions',
-    desc: 'Driving the quantum transition from inside? Use the deck to align stakeholders, secure budget, and build a cross-functional coalition around migration.',
+    desc: 'Driving the quantum transition from inside? Use the deck to align stakeholders, secure budget, and build a multi-disciplinary team around migration.',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   },
 ]
@@ -246,12 +259,46 @@ const deckOpen = ref(false)
 const deckDone = ref(false)
 const deckForm = reactive({ name: '', email: '', org: '', role: '' })
 
+// ── Language selection ──────────────────────────────────────────────
+// Set `available: true` for Dutch once the translated PDF is placed at
+// public/assets/public_board_briefing_deck_nl.pdf.
+const languageOptions = [
+  {
+    code: 'en',
+    label: 'English',
+    flag: '🇬🇧',
+    file: 'public_board_briefing_deck.pdf',
+    available: true,
+  },
+  {
+    code: 'nl',
+    label: 'Nederlands',
+    flag: '🇳🇱',
+    file: 'public_board_briefing_deck_nl.pdf',
+    available: false,
+  },
+]
+const selectedLanguage = ref('en')
+
+const selectedLanguageOption = computed(
+  () => languageOptions.find(o => o.code === selectedLanguage.value) || languageOptions[0]
+)
+const selectedLanguageLabel = computed(() => selectedLanguageOption.value.label)
+
+// PDF served from public/assets — Vite's base is './', so a relative
+// path resolves correctly from any route.
+const deckPdfUrl = computed(
+  () => `${import.meta.env.BASE_URL}assets/${selectedLanguageOption.value.file}`
+)
+
 function openDeck()  { deckOpen.value = true }
 function closeDeck() { deckOpen.value = false }
 
 function submitDeck() {
   // TODO: wire to actual form backend / email delivery
   deckDone.value = true
+  // Open the PDF in a new tab once the email wall is passed.
+  window.open(deckPdfUrl.value, '_blank', 'noopener')
 }
 
 // ── Mailto ───────────────────────────────────────────────────────────
@@ -277,29 +324,17 @@ const tailoredMailto = `mailto:info@irekai.nl?subject=${encodeURIComponent('Requ
 .slide-preview-card { background: rgba(28,25,23,0.7); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
 .slide-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
 
-.mock-slide {
-  background: #131110;
-  border: 1px solid rgba(212,165,116,0.2);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
+/* Title-slide image — rendered from page 1 of the deck PDF */
+.slide-preview-image {
+  display: block;
+  width: 100%;
   aspect-ratio: 16 / 9;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(212,165,116,0.2);
+  margin-bottom: 1rem;
+  background: #0f0d0c;
 }
-.mock-slide-header { display: flex; align-items: center; justify-content: space-between; }
-.mock-logo { font-size: 0.6rem; letter-spacing: 0.25em; color: #d4a574; opacity: 0.7; }
-.mock-slide-num { font-size: 0.55rem; letter-spacing: 0.15em; color: var(--text-dim); }
-.mock-slide-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0.4rem; padding: 0.5rem 0; }
-.mock-tag { font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; color: #d4a574; opacity: 0.65; margin-bottom: 0.3rem; }
-.mock-title { font-size: 1.05rem; font-weight: 500; line-height: 1.2; color: var(--text); }
-.mock-sub { font-size: 0.62rem; line-height: 1.6; color: var(--text-muted); }
-.mock-slide-footer { display: flex; align-items: center; justify-content: space-between; }
-.mock-date { font-size: 0.5rem; letter-spacing: 0.12em; color: var(--text-dim); }
-.mock-dots { display: flex; gap: 3px; }
-.mock-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.1); }
-.mock-dot.active { background: #d4a574; }
 
 .slide-outline { display: flex; flex-direction: column; gap: 0.4rem; }
 .outline-item { display: flex; gap: 0.65rem; align-items: baseline; }
@@ -371,7 +406,8 @@ const tailoredMailto = `mailto:info@irekai.nl?subject=${encodeURIComponent('Requ
 .modal-close:hover { color: var(--text); }
 .modal-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #d4a574; opacity: 0.75; margin-bottom: 0.6rem; }
 .modal-heading { font-size: 1.4rem; font-weight: 500; color: var(--text); margin-bottom: 0.6rem; }
-.modal-sub { font-size: 0.85rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.75rem; }
+.modal-sub { font-size: 0.85rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 0.75rem; }
+.modal-licence { font-size: 0.75rem; line-height: 1.65; color: var(--text-dim); border-left: 2px solid rgba(212,165,116,0.25); padding-left: 0.75rem; margin-bottom: 1.5rem; }
 .modal-form { display: flex; flex-direction: column; gap: 1rem; }
 .modal-field { display: flex; flex-direction: column; gap: 0.4rem; }
 .modal-field-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-muted); }
@@ -404,5 +440,49 @@ const tailoredMailto = `mailto:info@irekai.nl?subject=${encodeURIComponent('Requ
 .btn-gold:hover {
   background: rgba(212,165,116,0.18); border-color: rgba(212,165,116,0.7);
   box-shadow: 0 0 18px -5px rgba(212,165,116,0.4);
+}
+
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+.lang-toggle-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+.lang-toggle-btn:hover:not(.is-disabled) {
+  border-color: rgba(212,165,116,0.4);
+  color: var(--text);
+}
+.lang-toggle-btn.is-active {
+  border-color: rgba(212,165,116,0.7);
+  background: rgba(212,165,116,0.12);
+  color: #d4a574;
+}
+.lang-toggle-btn.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.lang-toggle-flag { font-size: 1rem; line-height: 1; }
+.lang-toggle-label { font-weight: 500; }
+.lang-toggle-note {
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-left: 0.25rem;
 }
 </style>
